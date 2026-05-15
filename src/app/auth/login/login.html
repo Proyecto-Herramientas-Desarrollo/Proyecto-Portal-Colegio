@@ -6,14 +6,27 @@
     </div>
 
     <form (submit)="ingresar(); $event.preventDefault()">
+      
+      @if (mensajeError) {
+        <div class="alert alert-danger py-2 text-center" role="alert">
+          {{ mensajeError }}
+        </div>
+      }
+
       <div class="mb-3">
         <label for="username" class="form-label">DNI</label>
-        <input type="text" class="form-control" id="username" placeholder="Ingresa tu usuario" required>
+        <input type="text" class="form-control" id="username" 
+               placeholder="Ej. 71235392" required 
+               maxlength="8"
+               [(ngModel)]="dni" name="dni"
+               (input)="validarNumeros($event)">
       </div>
 
       <div class="mb-3">
         <label for="password" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+        <input type="password" class="form-control" id="password" 
+               placeholder="••••••••" required
+               [(ngModel)]="password" name="password">
       </div>
 
       <div class="mb-3 form-check">
