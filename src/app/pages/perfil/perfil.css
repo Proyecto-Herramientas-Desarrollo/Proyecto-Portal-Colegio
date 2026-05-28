@@ -1,0 +1,86 @@
+.profile-cover {
+  height: 120px;
+}
+
+.bg-primary-gradient {
+  background: linear-gradient(135deg, #0d6efd 0%, #0d389c 100%);
+}
+
+.avatar-wrapper {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  padding: 5px;
+  background-color: white;
+  z-index: 2;
+}
+
+.avatar-large {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+}
+
+.detail-item {
+  transition: all 0.3s ease;
+  border-color: #e9ecef !important;
+}
+
+.detail-item:hover {
+  transform: translateY(-5px);
+  border-color: #0d6efd !important;
+  box-shadow: 0 8px 20px rgba(13, 110, 253, 0.08);
+  background-color: white !important;
+}
+
+.icon-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+/* Sobrescribir botones para darles un aspecto premium de píldoras */
+.btn-group .btn-check:checked + label {
+  background-color: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
+}
+
+.btn-group label {
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  border-color: #dee2e6;
+  color: #495057;
+}
+
+.btn-group label:hover {
+  background-color: #f1f3f9;
+}
+
+/* Animación de entrada suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
