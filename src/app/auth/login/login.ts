@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 import { SAN_ALFONSO_DB } from '../../shared/data/db';
+import { AuthService } from '../auth'; // 1. IMPORTAMOS EL SERVICIO
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule], 
+  imports: [FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -16,15 +17,13 @@ export class Login {
   password = '';
   mensajeError = '';
 
-  constructor(private router: Router) {}
+  // 2. INYECTAMOS EL SERVICIO AQUÍ EN EL CONSTRUCTOR
+  constructor(private router: Router, private authService: AuthService) {}
 
-  
   validarNumeros(event: Event) {
     const input = event.target as HTMLInputElement;
-   
-    this.dni = input.value.replace(/[^0-9]/g, ''); 
+    this.dni = input.value.replace(/[^0-9]/g, '');
   }
-
 
   ingresar() {
     if (this.password !== '1234') {
@@ -43,6 +42,8 @@ export class Login {
         apellido: alumno.apellido
       }));
       this.mensajeError = '';
+
+      this.authService.login(); // 3. AVISAMOS AL GUARD QUE EL ALUMNO ENTRÓ
       this.router.navigate(['/dashboard']);
       return;
     }
@@ -58,26 +59,12 @@ export class Login {
         apellido: docente.apellido
       }));
       this.mensajeError = '';
+
+      this.authService.login(); // 4. AVISAMOS AL GUARD QUE EL DOCENTE ENTRÓ
       this.router.navigate(['/dashboard']);
       return;
     }
 
-    // Soporte para credencial hardcodeada original
-    if (this.dni === '71235392') {
-      const fallbackAlumno = SAN_ALFONSO_DB.alumnos.find(a => a.id === 3);
-      if (fallbackAlumno) {
-        localStorage.setItem('usuario_sesion', JSON.stringify({
-          role: 'alumno',
-          id: fallbackAlumno.id,
-          dni: fallbackAlumno.dni,
-          nombre: fallbackAlumno.nombre,
-          apellido: fallbackAlumno.apellido
-        }));
-      }
-      this.mensajeError = '';
-      this.router.navigate(['/dashboard']);
-      return;
-    }
 
     this.mensajeError = 'DNI no registrado como Alumno o Docente.';
   }
