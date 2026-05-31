@@ -8,6 +8,7 @@ import { Horario } from '../pages/alumno/horario/horario';
 import { Mensajes } from '../shared/mensajes/mensajes';
 import { Notificaciones } from '../shared/notificaciones/notificaciones';
 import { Finanzas } from '../pages/alumno/finanzas/finanzas';
+import { HistorialEscolar } from '../pages/alumno/historial-escolar/historial-escolar';
 import { PerfilComponent } from '../pages/perfil/perfil';
 import { Aulas } from '../pages/docente/aulas/aulas';
 
@@ -22,6 +23,7 @@ import { Aulas } from '../pages/docente/aulas/aulas';
     Mensajes,
     Notificaciones,
     Finanzas,
+    HistorialEscolar,
     PerfilComponent,
     Aulas
   ],

@@ -84,5 +84,13 @@ export const SAN_ALFONSO_DB = {
     { id: 28, nombre: 'Romina', apellido: 'Espinoza', dni: '70123483', aula_id: 20 }, // 5to D
     { id: 29, nombre: 'Andrés', apellido: 'Carrillo', dni: '70123484', aula_id: 20 }, // 5to D
     { id: 30, nombre: 'Jimena', apellido: 'Cáceres', dni: '70123485', aula_id: 20 }  // 5to D
+  ],
+
+  calificaciones: [
+    { id: 1, alumno_id: 3, curso_id: 1, estado: 'Aprobado', nota_final: 17.5, periodo: '2026 - Segundo Semestre' },
+    { id: 2, alumno_id: 3, curso_id: 2, estado: 'Aprobado', nota_final: 16.0, periodo: '2026 - Segundo Semestre' },
+    { id: 3, alumno_id: 3, curso_id: 3, estado: 'Pendiente', nota_final: null, periodo: '2026 - Segundo Semestre' },
+    { id: 4, alumno_id: 3, curso_id: 9, estado: 'Aprobado', nota_final: 15.8, periodo: '2026 - Segundo Semestre' },
+    { id: 5, alumno_id: 3, curso_id: 10, estado: 'Aprobado', nota_final: 14.5, periodo: '2026 - Segundo Semestre' }
   ]
 };
