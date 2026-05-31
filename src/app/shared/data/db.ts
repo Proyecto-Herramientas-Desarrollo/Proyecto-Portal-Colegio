@@ -5686,7 +5686,3009 @@ export const SAN_ALFONSO_DB = {
       "curso_id": 2,
       "docente_id": 2
     }
-  ] // Lo inicializamos vacío por un momento
+  ],
+  notas: [
+    {
+      "id": 1,
+      "alumno_id": 1,
+      "curso_id": 1,
+      "bimestre_1": 14,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 2,
+      "alumno_id": 1,
+      "curso_id": 2,
+      "bimestre_1": 15,
+      "bimestre_2": 16,
+      "bimestre_3": 17,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 3,
+      "alumno_id": 1,
+      "curso_id": 3,
+      "bimestre_1": 16,
+      "bimestre_2": 17,
+      "bimestre_3": 19,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 4,
+      "alumno_id": 1,
+      "curso_id": 4,
+      "bimestre_1": 17,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 5,
+      "alumno_id": 1,
+      "curso_id": 5,
+      "bimestre_1": 18,
+      "bimestre_2": 19,
+      "bimestre_3": 14,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 6,
+      "alumno_id": 1,
+      "curso_id": 6,
+      "bimestre_1": 19,
+      "bimestre_2": 20,
+      "bimestre_3": 16,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 7,
+      "alumno_id": 1,
+      "curso_id": 7,
+      "bimestre_1": 20,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 8,
+      "alumno_id": 1,
+      "curso_id": 8,
+      "bimestre_1": 12,
+      "bimestre_2": 13,
+      "bimestre_3": 20,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 9,
+      "alumno_id": 1,
+      "curso_id": 9,
+      "bimestre_1": 13,
+      "bimestre_2": 14,
+      "bimestre_3": 13,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 10,
+      "alumno_id": 1,
+      "curso_id": 10,
+      "bimestre_1": 14,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 11,
+      "alumno_id": 2,
+      "curso_id": 1,
+      "bimestre_1": 15,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 12,
+      "alumno_id": 2,
+      "curso_id": 2,
+      "bimestre_1": 16,
+      "bimestre_2": 18,
+      "bimestre_3": 18,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 13,
+      "alumno_id": 2,
+      "curso_id": 3,
+      "bimestre_1": 17,
+      "bimestre_2": 19,
+      "bimestre_3": 20,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 14,
+      "alumno_id": 2,
+      "curso_id": 4,
+      "bimestre_1": 18,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 15,
+      "alumno_id": 2,
+      "curso_id": 5,
+      "bimestre_1": 19,
+      "bimestre_2": 12,
+      "bimestre_3": 15,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 16,
+      "alumno_id": 2,
+      "curso_id": 6,
+      "bimestre_1": 20,
+      "bimestre_2": 13,
+      "bimestre_3": 17,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 17,
+      "alumno_id": 2,
+      "curso_id": 7,
+      "bimestre_1": 12,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 18,
+      "alumno_id": 2,
+      "curso_id": 8,
+      "bimestre_1": 13,
+      "bimestre_2": 15,
+      "bimestre_3": 12,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 19,
+      "alumno_id": 2,
+      "curso_id": 9,
+      "bimestre_1": 14,
+      "bimestre_2": 16,
+      "bimestre_3": 14,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 20,
+      "alumno_id": 2,
+      "curso_id": 10,
+      "bimestre_1": 15,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 21,
+      "alumno_id": 3,
+      "curso_id": 1,
+      "bimestre_1": 16,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 22,
+      "alumno_id": 3,
+      "curso_id": 2,
+      "bimestre_1": 17,
+      "bimestre_2": 20,
+      "bimestre_3": 19,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 23,
+      "alumno_id": 3,
+      "curso_id": 3,
+      "bimestre_1": 18,
+      "bimestre_2": 12,
+      "bimestre_3": 12,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 24,
+      "alumno_id": 3,
+      "curso_id": 4,
+      "bimestre_1": 19,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 25,
+      "alumno_id": 3,
+      "curso_id": 5,
+      "bimestre_1": 20,
+      "bimestre_2": 14,
+      "bimestre_3": 16,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 26,
+      "alumno_id": 3,
+      "curso_id": 6,
+      "bimestre_1": 12,
+      "bimestre_2": 15,
+      "bimestre_3": 18,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 27,
+      "alumno_id": 3,
+      "curso_id": 7,
+      "bimestre_1": 13,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 28,
+      "alumno_id": 3,
+      "curso_id": 8,
+      "bimestre_1": 14,
+      "bimestre_2": 17,
+      "bimestre_3": 13,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 29,
+      "alumno_id": 3,
+      "curso_id": 9,
+      "bimestre_1": 15,
+      "bimestre_2": 18,
+      "bimestre_3": 15,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 30,
+      "alumno_id": 3,
+      "curso_id": 10,
+      "bimestre_1": 16,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 31,
+      "alumno_id": 4,
+      "curso_id": 1,
+      "bimestre_1": 17,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 32,
+      "alumno_id": 4,
+      "curso_id": 2,
+      "bimestre_1": 18,
+      "bimestre_2": 13,
+      "bimestre_3": 20,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 33,
+      "alumno_id": 4,
+      "curso_id": 3,
+      "bimestre_1": 19,
+      "bimestre_2": 14,
+      "bimestre_3": 13,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 34,
+      "alumno_id": 4,
+      "curso_id": 4,
+      "bimestre_1": 20,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 35,
+      "alumno_id": 4,
+      "curso_id": 5,
+      "bimestre_1": 12,
+      "bimestre_2": 16,
+      "bimestre_3": 17,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 36,
+      "alumno_id": 4,
+      "curso_id": 6,
+      "bimestre_1": 13,
+      "bimestre_2": 17,
+      "bimestre_3": 19,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 37,
+      "alumno_id": 4,
+      "curso_id": 7,
+      "bimestre_1": 14,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 38,
+      "alumno_id": 4,
+      "curso_id": 8,
+      "bimestre_1": 15,
+      "bimestre_2": 19,
+      "bimestre_3": 14,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 39,
+      "alumno_id": 4,
+      "curso_id": 9,
+      "bimestre_1": 16,
+      "bimestre_2": 20,
+      "bimestre_3": 16,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 40,
+      "alumno_id": 4,
+      "curso_id": 10,
+      "bimestre_1": 17,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 41,
+      "alumno_id": 5,
+      "curso_id": 1,
+      "bimestre_1": 18,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 42,
+      "alumno_id": 5,
+      "curso_id": 2,
+      "bimestre_1": 19,
+      "bimestre_2": 15,
+      "bimestre_3": 12,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 43,
+      "alumno_id": 5,
+      "curso_id": 3,
+      "bimestre_1": 20,
+      "bimestre_2": 16,
+      "bimestre_3": 14,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 44,
+      "alumno_id": 5,
+      "curso_id": 4,
+      "bimestre_1": 12,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 45,
+      "alumno_id": 5,
+      "curso_id": 5,
+      "bimestre_1": 13,
+      "bimestre_2": 18,
+      "bimestre_3": 18,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 46,
+      "alumno_id": 5,
+      "curso_id": 6,
+      "bimestre_1": 14,
+      "bimestre_2": 19,
+      "bimestre_3": 20,
+      "bimestre_4": 18,
+      "promedio_final": 18
+    },
+    {
+      "id": 47,
+      "alumno_id": 5,
+      "curso_id": 7,
+      "bimestre_1": 15,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 48,
+      "alumno_id": 5,
+      "curso_id": 8,
+      "bimestre_1": 16,
+      "bimestre_2": 12,
+      "bimestre_3": 15,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 49,
+      "alumno_id": 5,
+      "curso_id": 9,
+      "bimestre_1": 17,
+      "bimestre_2": 13,
+      "bimestre_3": 17,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 50,
+      "alumno_id": 5,
+      "curso_id": 10,
+      "bimestre_1": 18,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 51,
+      "alumno_id": 6,
+      "curso_id": 1,
+      "bimestre_1": 19,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 52,
+      "alumno_id": 6,
+      "curso_id": 2,
+      "bimestre_1": 20,
+      "bimestre_2": 17,
+      "bimestre_3": 13,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 53,
+      "alumno_id": 6,
+      "curso_id": 3,
+      "bimestre_1": 12,
+      "bimestre_2": 18,
+      "bimestre_3": 15,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 54,
+      "alumno_id": 6,
+      "curso_id": 4,
+      "bimestre_1": 13,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 55,
+      "alumno_id": 6,
+      "curso_id": 5,
+      "bimestre_1": 14,
+      "bimestre_2": 20,
+      "bimestre_3": 19,
+      "bimestre_4": 18,
+      "promedio_final": 18
+    },
+    {
+      "id": 56,
+      "alumno_id": 6,
+      "curso_id": 6,
+      "bimestre_1": 15,
+      "bimestre_2": 12,
+      "bimestre_3": 12,
+      "bimestre_4": 12,
+      "promedio_final": 13
+    },
+    {
+      "id": 57,
+      "alumno_id": 6,
+      "curso_id": 7,
+      "bimestre_1": 16,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 58,
+      "alumno_id": 6,
+      "curso_id": 8,
+      "bimestre_1": 17,
+      "bimestre_2": 14,
+      "bimestre_3": 16,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 59,
+      "alumno_id": 6,
+      "curso_id": 9,
+      "bimestre_1": 18,
+      "bimestre_2": 15,
+      "bimestre_3": 18,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 60,
+      "alumno_id": 6,
+      "curso_id": 10,
+      "bimestre_1": 19,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 61,
+      "alumno_id": 7,
+      "curso_id": 1,
+      "bimestre_1": 20,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 62,
+      "alumno_id": 7,
+      "curso_id": 2,
+      "bimestre_1": 12,
+      "bimestre_2": 19,
+      "bimestre_3": 14,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 63,
+      "alumno_id": 7,
+      "curso_id": 3,
+      "bimestre_1": 13,
+      "bimestre_2": 20,
+      "bimestre_3": 16,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 64,
+      "alumno_id": 7,
+      "curso_id": 4,
+      "bimestre_1": 14,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 65,
+      "alumno_id": 7,
+      "curso_id": 5,
+      "bimestre_1": 15,
+      "bimestre_2": 13,
+      "bimestre_3": 20,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 66,
+      "alumno_id": 7,
+      "curso_id": 6,
+      "bimestre_1": 16,
+      "bimestre_2": 14,
+      "bimestre_3": 13,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 67,
+      "alumno_id": 7,
+      "curso_id": 7,
+      "bimestre_1": 17,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 68,
+      "alumno_id": 7,
+      "curso_id": 8,
+      "bimestre_1": 18,
+      "bimestre_2": 16,
+      "bimestre_3": 17,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 69,
+      "alumno_id": 7,
+      "curso_id": 9,
+      "bimestre_1": 19,
+      "bimestre_2": 17,
+      "bimestre_3": 19,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 70,
+      "alumno_id": 7,
+      "curso_id": 10,
+      "bimestre_1": 20,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 71,
+      "alumno_id": 8,
+      "curso_id": 1,
+      "bimestre_1": 12,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 72,
+      "alumno_id": 8,
+      "curso_id": 2,
+      "bimestre_1": 13,
+      "bimestre_2": 12,
+      "bimestre_3": 15,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 73,
+      "alumno_id": 8,
+      "curso_id": 3,
+      "bimestre_1": 14,
+      "bimestre_2": 13,
+      "bimestre_3": 17,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 74,
+      "alumno_id": 8,
+      "curso_id": 4,
+      "bimestre_1": 15,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 75,
+      "alumno_id": 8,
+      "curso_id": 5,
+      "bimestre_1": 16,
+      "bimestre_2": 15,
+      "bimestre_3": 12,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 76,
+      "alumno_id": 8,
+      "curso_id": 6,
+      "bimestre_1": 17,
+      "bimestre_2": 16,
+      "bimestre_3": 14,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 77,
+      "alumno_id": 8,
+      "curso_id": 7,
+      "bimestre_1": 18,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 78,
+      "alumno_id": 8,
+      "curso_id": 8,
+      "bimestre_1": 19,
+      "bimestre_2": 18,
+      "bimestre_3": 18,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 79,
+      "alumno_id": 8,
+      "curso_id": 9,
+      "bimestre_1": 20,
+      "bimestre_2": 19,
+      "bimestre_3": 20,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 80,
+      "alumno_id": 8,
+      "curso_id": 10,
+      "bimestre_1": 12,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 81,
+      "alumno_id": 9,
+      "curso_id": 1,
+      "bimestre_1": 13,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 82,
+      "alumno_id": 9,
+      "curso_id": 2,
+      "bimestre_1": 14,
+      "bimestre_2": 14,
+      "bimestre_3": 16,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 83,
+      "alumno_id": 9,
+      "curso_id": 3,
+      "bimestre_1": 15,
+      "bimestre_2": 15,
+      "bimestre_3": 18,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 84,
+      "alumno_id": 9,
+      "curso_id": 4,
+      "bimestre_1": 16,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 85,
+      "alumno_id": 9,
+      "curso_id": 5,
+      "bimestre_1": 17,
+      "bimestre_2": 17,
+      "bimestre_3": 13,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 86,
+      "alumno_id": 9,
+      "curso_id": 6,
+      "bimestre_1": 18,
+      "bimestre_2": 18,
+      "bimestre_3": 15,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 87,
+      "alumno_id": 9,
+      "curso_id": 7,
+      "bimestre_1": 19,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 88,
+      "alumno_id": 9,
+      "curso_id": 8,
+      "bimestre_1": 20,
+      "bimestre_2": 20,
+      "bimestre_3": 19,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 89,
+      "alumno_id": 9,
+      "curso_id": 9,
+      "bimestre_1": 12,
+      "bimestre_2": 12,
+      "bimestre_3": 12,
+      "bimestre_4": 12,
+      "promedio_final": 12
+    },
+    {
+      "id": 90,
+      "alumno_id": 9,
+      "curso_id": 10,
+      "bimestre_1": 13,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 91,
+      "alumno_id": 10,
+      "curso_id": 1,
+      "bimestre_1": 14,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 92,
+      "alumno_id": 10,
+      "curso_id": 2,
+      "bimestre_1": 15,
+      "bimestre_2": 16,
+      "bimestre_3": 17,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 93,
+      "alumno_id": 10,
+      "curso_id": 3,
+      "bimestre_1": 16,
+      "bimestre_2": 17,
+      "bimestre_3": 19,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 94,
+      "alumno_id": 10,
+      "curso_id": 4,
+      "bimestre_1": 17,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 95,
+      "alumno_id": 10,
+      "curso_id": 5,
+      "bimestre_1": 18,
+      "bimestre_2": 19,
+      "bimestre_3": 14,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 96,
+      "alumno_id": 10,
+      "curso_id": 6,
+      "bimestre_1": 19,
+      "bimestre_2": 20,
+      "bimestre_3": 16,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 97,
+      "alumno_id": 10,
+      "curso_id": 7,
+      "bimestre_1": 20,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 98,
+      "alumno_id": 10,
+      "curso_id": 8,
+      "bimestre_1": 12,
+      "bimestre_2": 13,
+      "bimestre_3": 20,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 99,
+      "alumno_id": 10,
+      "curso_id": 9,
+      "bimestre_1": 13,
+      "bimestre_2": 14,
+      "bimestre_3": 13,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 100,
+      "alumno_id": 10,
+      "curso_id": 10,
+      "bimestre_1": 14,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 101,
+      "alumno_id": 11,
+      "curso_id": 1,
+      "bimestre_1": 15,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 102,
+      "alumno_id": 11,
+      "curso_id": 2,
+      "bimestre_1": 16,
+      "bimestre_2": 18,
+      "bimestre_3": 18,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 103,
+      "alumno_id": 11,
+      "curso_id": 3,
+      "bimestre_1": 17,
+      "bimestre_2": 19,
+      "bimestre_3": 20,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 104,
+      "alumno_id": 11,
+      "curso_id": 4,
+      "bimestre_1": 18,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 105,
+      "alumno_id": 11,
+      "curso_id": 5,
+      "bimestre_1": 19,
+      "bimestre_2": 12,
+      "bimestre_3": 15,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 106,
+      "alumno_id": 11,
+      "curso_id": 6,
+      "bimestre_1": 20,
+      "bimestre_2": 13,
+      "bimestre_3": 17,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 107,
+      "alumno_id": 11,
+      "curso_id": 7,
+      "bimestre_1": 12,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 108,
+      "alumno_id": 11,
+      "curso_id": 8,
+      "bimestre_1": 13,
+      "bimestre_2": 15,
+      "bimestre_3": 12,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 109,
+      "alumno_id": 11,
+      "curso_id": 9,
+      "bimestre_1": 14,
+      "bimestre_2": 16,
+      "bimestre_3": 14,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 110,
+      "alumno_id": 11,
+      "curso_id": 10,
+      "bimestre_1": 15,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 111,
+      "alumno_id": 12,
+      "curso_id": 1,
+      "bimestre_1": 16,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 112,
+      "alumno_id": 12,
+      "curso_id": 2,
+      "bimestre_1": 17,
+      "bimestre_2": 20,
+      "bimestre_3": 19,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 113,
+      "alumno_id": 12,
+      "curso_id": 3,
+      "bimestre_1": 18,
+      "bimestre_2": 12,
+      "bimestre_3": 12,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 114,
+      "alumno_id": 12,
+      "curso_id": 4,
+      "bimestre_1": 19,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 115,
+      "alumno_id": 12,
+      "curso_id": 5,
+      "bimestre_1": 20,
+      "bimestre_2": 14,
+      "bimestre_3": 16,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 116,
+      "alumno_id": 12,
+      "curso_id": 6,
+      "bimestre_1": 12,
+      "bimestre_2": 15,
+      "bimestre_3": 18,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 117,
+      "alumno_id": 12,
+      "curso_id": 7,
+      "bimestre_1": 13,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 118,
+      "alumno_id": 12,
+      "curso_id": 8,
+      "bimestre_1": 14,
+      "bimestre_2": 17,
+      "bimestre_3": 13,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 119,
+      "alumno_id": 12,
+      "curso_id": 9,
+      "bimestre_1": 15,
+      "bimestre_2": 18,
+      "bimestre_3": 15,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 120,
+      "alumno_id": 12,
+      "curso_id": 10,
+      "bimestre_1": 16,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 121,
+      "alumno_id": 13,
+      "curso_id": 1,
+      "bimestre_1": 17,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 122,
+      "alumno_id": 13,
+      "curso_id": 2,
+      "bimestre_1": 18,
+      "bimestre_2": 13,
+      "bimestre_3": 20,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 123,
+      "alumno_id": 13,
+      "curso_id": 3,
+      "bimestre_1": 19,
+      "bimestre_2": 14,
+      "bimestre_3": 13,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 124,
+      "alumno_id": 13,
+      "curso_id": 4,
+      "bimestre_1": 20,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 125,
+      "alumno_id": 13,
+      "curso_id": 5,
+      "bimestre_1": 12,
+      "bimestre_2": 16,
+      "bimestre_3": 17,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 126,
+      "alumno_id": 13,
+      "curso_id": 6,
+      "bimestre_1": 13,
+      "bimestre_2": 17,
+      "bimestre_3": 19,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 127,
+      "alumno_id": 13,
+      "curso_id": 7,
+      "bimestre_1": 14,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 128,
+      "alumno_id": 13,
+      "curso_id": 8,
+      "bimestre_1": 15,
+      "bimestre_2": 19,
+      "bimestre_3": 14,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 129,
+      "alumno_id": 13,
+      "curso_id": 9,
+      "bimestre_1": 16,
+      "bimestre_2": 20,
+      "bimestre_3": 16,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 130,
+      "alumno_id": 13,
+      "curso_id": 10,
+      "bimestre_1": 17,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 131,
+      "alumno_id": 14,
+      "curso_id": 1,
+      "bimestre_1": 18,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 132,
+      "alumno_id": 14,
+      "curso_id": 2,
+      "bimestre_1": 19,
+      "bimestre_2": 15,
+      "bimestre_3": 12,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 133,
+      "alumno_id": 14,
+      "curso_id": 3,
+      "bimestre_1": 20,
+      "bimestre_2": 16,
+      "bimestre_3": 14,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 134,
+      "alumno_id": 14,
+      "curso_id": 4,
+      "bimestre_1": 12,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 135,
+      "alumno_id": 14,
+      "curso_id": 5,
+      "bimestre_1": 13,
+      "bimestre_2": 18,
+      "bimestre_3": 18,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 136,
+      "alumno_id": 14,
+      "curso_id": 6,
+      "bimestre_1": 14,
+      "bimestre_2": 19,
+      "bimestre_3": 20,
+      "bimestre_4": 18,
+      "promedio_final": 18
+    },
+    {
+      "id": 137,
+      "alumno_id": 14,
+      "curso_id": 7,
+      "bimestre_1": 15,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 138,
+      "alumno_id": 14,
+      "curso_id": 8,
+      "bimestre_1": 16,
+      "bimestre_2": 12,
+      "bimestre_3": 15,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 139,
+      "alumno_id": 14,
+      "curso_id": 9,
+      "bimestre_1": 17,
+      "bimestre_2": 13,
+      "bimestre_3": 17,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 140,
+      "alumno_id": 14,
+      "curso_id": 10,
+      "bimestre_1": 18,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 141,
+      "alumno_id": 15,
+      "curso_id": 1,
+      "bimestre_1": 19,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 142,
+      "alumno_id": 15,
+      "curso_id": 2,
+      "bimestre_1": 20,
+      "bimestre_2": 17,
+      "bimestre_3": 13,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 143,
+      "alumno_id": 15,
+      "curso_id": 3,
+      "bimestre_1": 12,
+      "bimestre_2": 18,
+      "bimestre_3": 15,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 144,
+      "alumno_id": 15,
+      "curso_id": 4,
+      "bimestre_1": 13,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 145,
+      "alumno_id": 15,
+      "curso_id": 5,
+      "bimestre_1": 14,
+      "bimestre_2": 20,
+      "bimestre_3": 19,
+      "bimestre_4": 18,
+      "promedio_final": 18
+    },
+    {
+      "id": 146,
+      "alumno_id": 15,
+      "curso_id": 6,
+      "bimestre_1": 15,
+      "bimestre_2": 12,
+      "bimestre_3": 12,
+      "bimestre_4": 12,
+      "promedio_final": 13
+    },
+    {
+      "id": 147,
+      "alumno_id": 15,
+      "curso_id": 7,
+      "bimestre_1": 16,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 148,
+      "alumno_id": 15,
+      "curso_id": 8,
+      "bimestre_1": 17,
+      "bimestre_2": 14,
+      "bimestre_3": 16,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 149,
+      "alumno_id": 15,
+      "curso_id": 9,
+      "bimestre_1": 18,
+      "bimestre_2": 15,
+      "bimestre_3": 18,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 150,
+      "alumno_id": 15,
+      "curso_id": 10,
+      "bimestre_1": 19,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 151,
+      "alumno_id": 16,
+      "curso_id": 1,
+      "bimestre_1": 20,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 152,
+      "alumno_id": 16,
+      "curso_id": 2,
+      "bimestre_1": 12,
+      "bimestre_2": 19,
+      "bimestre_3": 14,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 153,
+      "alumno_id": 16,
+      "curso_id": 3,
+      "bimestre_1": 13,
+      "bimestre_2": 20,
+      "bimestre_3": 16,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 154,
+      "alumno_id": 16,
+      "curso_id": 4,
+      "bimestre_1": 14,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 155,
+      "alumno_id": 16,
+      "curso_id": 5,
+      "bimestre_1": 15,
+      "bimestre_2": 13,
+      "bimestre_3": 20,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 156,
+      "alumno_id": 16,
+      "curso_id": 6,
+      "bimestre_1": 16,
+      "bimestre_2": 14,
+      "bimestre_3": 13,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 157,
+      "alumno_id": 16,
+      "curso_id": 7,
+      "bimestre_1": 17,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 158,
+      "alumno_id": 16,
+      "curso_id": 8,
+      "bimestre_1": 18,
+      "bimestre_2": 16,
+      "bimestre_3": 17,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 159,
+      "alumno_id": 16,
+      "curso_id": 9,
+      "bimestre_1": 19,
+      "bimestre_2": 17,
+      "bimestre_3": 19,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 160,
+      "alumno_id": 16,
+      "curso_id": 10,
+      "bimestre_1": 20,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 161,
+      "alumno_id": 17,
+      "curso_id": 1,
+      "bimestre_1": 12,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 162,
+      "alumno_id": 17,
+      "curso_id": 2,
+      "bimestre_1": 13,
+      "bimestre_2": 12,
+      "bimestre_3": 15,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 163,
+      "alumno_id": 17,
+      "curso_id": 3,
+      "bimestre_1": 14,
+      "bimestre_2": 13,
+      "bimestre_3": 17,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 164,
+      "alumno_id": 17,
+      "curso_id": 4,
+      "bimestre_1": 15,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 165,
+      "alumno_id": 17,
+      "curso_id": 5,
+      "bimestre_1": 16,
+      "bimestre_2": 15,
+      "bimestre_3": 12,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 166,
+      "alumno_id": 17,
+      "curso_id": 6,
+      "bimestre_1": 17,
+      "bimestre_2": 16,
+      "bimestre_3": 14,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 167,
+      "alumno_id": 17,
+      "curso_id": 7,
+      "bimestre_1": 18,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 168,
+      "alumno_id": 17,
+      "curso_id": 8,
+      "bimestre_1": 19,
+      "bimestre_2": 18,
+      "bimestre_3": 18,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 169,
+      "alumno_id": 17,
+      "curso_id": 9,
+      "bimestre_1": 20,
+      "bimestre_2": 19,
+      "bimestre_3": 20,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 170,
+      "alumno_id": 17,
+      "curso_id": 10,
+      "bimestre_1": 12,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 171,
+      "alumno_id": 18,
+      "curso_id": 1,
+      "bimestre_1": 13,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 172,
+      "alumno_id": 18,
+      "curso_id": 2,
+      "bimestre_1": 14,
+      "bimestre_2": 14,
+      "bimestre_3": 16,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 173,
+      "alumno_id": 18,
+      "curso_id": 3,
+      "bimestre_1": 15,
+      "bimestre_2": 15,
+      "bimestre_3": 18,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 174,
+      "alumno_id": 18,
+      "curso_id": 4,
+      "bimestre_1": 16,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 175,
+      "alumno_id": 18,
+      "curso_id": 5,
+      "bimestre_1": 17,
+      "bimestre_2": 17,
+      "bimestre_3": 13,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 176,
+      "alumno_id": 18,
+      "curso_id": 6,
+      "bimestre_1": 18,
+      "bimestre_2": 18,
+      "bimestre_3": 15,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 177,
+      "alumno_id": 18,
+      "curso_id": 7,
+      "bimestre_1": 19,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 178,
+      "alumno_id": 18,
+      "curso_id": 8,
+      "bimestre_1": 20,
+      "bimestre_2": 20,
+      "bimestre_3": 19,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 179,
+      "alumno_id": 18,
+      "curso_id": 9,
+      "bimestre_1": 12,
+      "bimestre_2": 12,
+      "bimestre_3": 12,
+      "bimestre_4": 12,
+      "promedio_final": 12
+    },
+    {
+      "id": 180,
+      "alumno_id": 18,
+      "curso_id": 10,
+      "bimestre_1": 13,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 181,
+      "alumno_id": 19,
+      "curso_id": 1,
+      "bimestre_1": 14,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 182,
+      "alumno_id": 19,
+      "curso_id": 2,
+      "bimestre_1": 15,
+      "bimestre_2": 16,
+      "bimestre_3": 17,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 183,
+      "alumno_id": 19,
+      "curso_id": 3,
+      "bimestre_1": 16,
+      "bimestre_2": 17,
+      "bimestre_3": 19,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 184,
+      "alumno_id": 19,
+      "curso_id": 4,
+      "bimestre_1": 17,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 185,
+      "alumno_id": 19,
+      "curso_id": 5,
+      "bimestre_1": 18,
+      "bimestre_2": 19,
+      "bimestre_3": 14,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 186,
+      "alumno_id": 19,
+      "curso_id": 6,
+      "bimestre_1": 19,
+      "bimestre_2": 20,
+      "bimestre_3": 16,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 187,
+      "alumno_id": 19,
+      "curso_id": 7,
+      "bimestre_1": 20,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 188,
+      "alumno_id": 19,
+      "curso_id": 8,
+      "bimestre_1": 12,
+      "bimestre_2": 13,
+      "bimestre_3": 20,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 189,
+      "alumno_id": 19,
+      "curso_id": 9,
+      "bimestre_1": 13,
+      "bimestre_2": 14,
+      "bimestre_3": 13,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 190,
+      "alumno_id": 19,
+      "curso_id": 10,
+      "bimestre_1": 14,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 191,
+      "alumno_id": 20,
+      "curso_id": 1,
+      "bimestre_1": 15,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 192,
+      "alumno_id": 20,
+      "curso_id": 2,
+      "bimestre_1": 16,
+      "bimestre_2": 18,
+      "bimestre_3": 18,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 193,
+      "alumno_id": 20,
+      "curso_id": 3,
+      "bimestre_1": 17,
+      "bimestre_2": 19,
+      "bimestre_3": 20,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 194,
+      "alumno_id": 20,
+      "curso_id": 4,
+      "bimestre_1": 18,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 195,
+      "alumno_id": 20,
+      "curso_id": 5,
+      "bimestre_1": 19,
+      "bimestre_2": 12,
+      "bimestre_3": 15,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 196,
+      "alumno_id": 20,
+      "curso_id": 6,
+      "bimestre_1": 20,
+      "bimestre_2": 13,
+      "bimestre_3": 17,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 197,
+      "alumno_id": 20,
+      "curso_id": 7,
+      "bimestre_1": 12,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 198,
+      "alumno_id": 20,
+      "curso_id": 8,
+      "bimestre_1": 13,
+      "bimestre_2": 15,
+      "bimestre_3": 12,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 199,
+      "alumno_id": 20,
+      "curso_id": 9,
+      "bimestre_1": 14,
+      "bimestre_2": 16,
+      "bimestre_3": 14,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 200,
+      "alumno_id": 20,
+      "curso_id": 10,
+      "bimestre_1": 15,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 201,
+      "alumno_id": 21,
+      "curso_id": 1,
+      "bimestre_1": 16,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 202,
+      "alumno_id": 21,
+      "curso_id": 2,
+      "bimestre_1": 17,
+      "bimestre_2": 20,
+      "bimestre_3": 19,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 203,
+      "alumno_id": 21,
+      "curso_id": 3,
+      "bimestre_1": 18,
+      "bimestre_2": 12,
+      "bimestre_3": 12,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 204,
+      "alumno_id": 21,
+      "curso_id": 4,
+      "bimestre_1": 19,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 205,
+      "alumno_id": 21,
+      "curso_id": 5,
+      "bimestre_1": 20,
+      "bimestre_2": 14,
+      "bimestre_3": 16,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 206,
+      "alumno_id": 21,
+      "curso_id": 6,
+      "bimestre_1": 12,
+      "bimestre_2": 15,
+      "bimestre_3": 18,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 207,
+      "alumno_id": 21,
+      "curso_id": 7,
+      "bimestre_1": 13,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 208,
+      "alumno_id": 21,
+      "curso_id": 8,
+      "bimestre_1": 14,
+      "bimestre_2": 17,
+      "bimestre_3": 13,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 209,
+      "alumno_id": 21,
+      "curso_id": 9,
+      "bimestre_1": 15,
+      "bimestre_2": 18,
+      "bimestre_3": 15,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 210,
+      "alumno_id": 21,
+      "curso_id": 10,
+      "bimestre_1": 16,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 211,
+      "alumno_id": 22,
+      "curso_id": 1,
+      "bimestre_1": 17,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 212,
+      "alumno_id": 22,
+      "curso_id": 2,
+      "bimestre_1": 18,
+      "bimestre_2": 13,
+      "bimestre_3": 20,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 213,
+      "alumno_id": 22,
+      "curso_id": 3,
+      "bimestre_1": 19,
+      "bimestre_2": 14,
+      "bimestre_3": 13,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 214,
+      "alumno_id": 22,
+      "curso_id": 4,
+      "bimestre_1": 20,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 215,
+      "alumno_id": 22,
+      "curso_id": 5,
+      "bimestre_1": 12,
+      "bimestre_2": 16,
+      "bimestre_3": 17,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 216,
+      "alumno_id": 22,
+      "curso_id": 6,
+      "bimestre_1": 13,
+      "bimestre_2": 17,
+      "bimestre_3": 19,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 217,
+      "alumno_id": 22,
+      "curso_id": 7,
+      "bimestre_1": 14,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 218,
+      "alumno_id": 22,
+      "curso_id": 8,
+      "bimestre_1": 15,
+      "bimestre_2": 19,
+      "bimestre_3": 14,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 219,
+      "alumno_id": 22,
+      "curso_id": 9,
+      "bimestre_1": 16,
+      "bimestre_2": 20,
+      "bimestre_3": 16,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 220,
+      "alumno_id": 22,
+      "curso_id": 10,
+      "bimestre_1": 17,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 221,
+      "alumno_id": 23,
+      "curso_id": 1,
+      "bimestre_1": 18,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 222,
+      "alumno_id": 23,
+      "curso_id": 2,
+      "bimestre_1": 19,
+      "bimestre_2": 15,
+      "bimestre_3": 12,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 223,
+      "alumno_id": 23,
+      "curso_id": 3,
+      "bimestre_1": 20,
+      "bimestre_2": 16,
+      "bimestre_3": 14,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 224,
+      "alumno_id": 23,
+      "curso_id": 4,
+      "bimestre_1": 12,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 225,
+      "alumno_id": 23,
+      "curso_id": 5,
+      "bimestre_1": 13,
+      "bimestre_2": 18,
+      "bimestre_3": 18,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 226,
+      "alumno_id": 23,
+      "curso_id": 6,
+      "bimestre_1": 14,
+      "bimestre_2": 19,
+      "bimestre_3": 20,
+      "bimestre_4": 18,
+      "promedio_final": 18
+    },
+    {
+      "id": 227,
+      "alumno_id": 23,
+      "curso_id": 7,
+      "bimestre_1": 15,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 228,
+      "alumno_id": 23,
+      "curso_id": 8,
+      "bimestre_1": 16,
+      "bimestre_2": 12,
+      "bimestre_3": 15,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 229,
+      "alumno_id": 23,
+      "curso_id": 9,
+      "bimestre_1": 17,
+      "bimestre_2": 13,
+      "bimestre_3": 17,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 230,
+      "alumno_id": 23,
+      "curso_id": 10,
+      "bimestre_1": 18,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 231,
+      "alumno_id": 24,
+      "curso_id": 1,
+      "bimestre_1": 19,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 232,
+      "alumno_id": 24,
+      "curso_id": 2,
+      "bimestre_1": 20,
+      "bimestre_2": 17,
+      "bimestre_3": 13,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 233,
+      "alumno_id": 24,
+      "curso_id": 3,
+      "bimestre_1": 12,
+      "bimestre_2": 18,
+      "bimestre_3": 15,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 234,
+      "alumno_id": 24,
+      "curso_id": 4,
+      "bimestre_1": 13,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 235,
+      "alumno_id": 24,
+      "curso_id": 5,
+      "bimestre_1": 14,
+      "bimestre_2": 20,
+      "bimestre_3": 19,
+      "bimestre_4": 18,
+      "promedio_final": 18
+    },
+    {
+      "id": 236,
+      "alumno_id": 24,
+      "curso_id": 6,
+      "bimestre_1": 15,
+      "bimestre_2": 12,
+      "bimestre_3": 12,
+      "bimestre_4": 12,
+      "promedio_final": 13
+    },
+    {
+      "id": 237,
+      "alumno_id": 24,
+      "curso_id": 7,
+      "bimestre_1": 16,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 238,
+      "alumno_id": 24,
+      "curso_id": 8,
+      "bimestre_1": 17,
+      "bimestre_2": 14,
+      "bimestre_3": 16,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 239,
+      "alumno_id": 24,
+      "curso_id": 9,
+      "bimestre_1": 18,
+      "bimestre_2": 15,
+      "bimestre_3": 18,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 240,
+      "alumno_id": 24,
+      "curso_id": 10,
+      "bimestre_1": 19,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 241,
+      "alumno_id": 25,
+      "curso_id": 1,
+      "bimestre_1": 20,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 242,
+      "alumno_id": 25,
+      "curso_id": 2,
+      "bimestre_1": 12,
+      "bimestre_2": 19,
+      "bimestre_3": 14,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 243,
+      "alumno_id": 25,
+      "curso_id": 3,
+      "bimestre_1": 13,
+      "bimestre_2": 20,
+      "bimestre_3": 16,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 244,
+      "alumno_id": 25,
+      "curso_id": 4,
+      "bimestre_1": 14,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 245,
+      "alumno_id": 25,
+      "curso_id": 5,
+      "bimestre_1": 15,
+      "bimestre_2": 13,
+      "bimestre_3": 20,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 246,
+      "alumno_id": 25,
+      "curso_id": 6,
+      "bimestre_1": 16,
+      "bimestre_2": 14,
+      "bimestre_3": 13,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 247,
+      "alumno_id": 25,
+      "curso_id": 7,
+      "bimestre_1": 17,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 248,
+      "alumno_id": 25,
+      "curso_id": 8,
+      "bimestre_1": 18,
+      "bimestre_2": 16,
+      "bimestre_3": 17,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 249,
+      "alumno_id": 25,
+      "curso_id": 9,
+      "bimestre_1": 19,
+      "bimestre_2": 17,
+      "bimestre_3": 19,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 250,
+      "alumno_id": 25,
+      "curso_id": 10,
+      "bimestre_1": 20,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 251,
+      "alumno_id": 26,
+      "curso_id": 1,
+      "bimestre_1": 12,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 252,
+      "alumno_id": 26,
+      "curso_id": 2,
+      "bimestre_1": 13,
+      "bimestre_2": 12,
+      "bimestre_3": 15,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 253,
+      "alumno_id": 26,
+      "curso_id": 3,
+      "bimestre_1": 14,
+      "bimestre_2": 13,
+      "bimestre_3": 17,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 254,
+      "alumno_id": 26,
+      "curso_id": 4,
+      "bimestre_1": 15,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 255,
+      "alumno_id": 26,
+      "curso_id": 5,
+      "bimestre_1": 16,
+      "bimestre_2": 15,
+      "bimestre_3": 12,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 256,
+      "alumno_id": 26,
+      "curso_id": 6,
+      "bimestre_1": 17,
+      "bimestre_2": 16,
+      "bimestre_3": 14,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 257,
+      "alumno_id": 26,
+      "curso_id": 7,
+      "bimestre_1": 18,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 258,
+      "alumno_id": 26,
+      "curso_id": 8,
+      "bimestre_1": 19,
+      "bimestre_2": 18,
+      "bimestre_3": 18,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 259,
+      "alumno_id": 26,
+      "curso_id": 9,
+      "bimestre_1": 20,
+      "bimestre_2": 19,
+      "bimestre_3": 20,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 260,
+      "alumno_id": 26,
+      "curso_id": 10,
+      "bimestre_1": 12,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 261,
+      "alumno_id": 27,
+      "curso_id": 1,
+      "bimestre_1": 13,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 262,
+      "alumno_id": 27,
+      "curso_id": 2,
+      "bimestre_1": 14,
+      "bimestre_2": 14,
+      "bimestre_3": 16,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 263,
+      "alumno_id": 27,
+      "curso_id": 3,
+      "bimestre_1": 15,
+      "bimestre_2": 15,
+      "bimestre_3": 18,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 264,
+      "alumno_id": 27,
+      "curso_id": 4,
+      "bimestre_1": 16,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 265,
+      "alumno_id": 27,
+      "curso_id": 5,
+      "bimestre_1": 17,
+      "bimestre_2": 17,
+      "bimestre_3": 13,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 266,
+      "alumno_id": 27,
+      "curso_id": 6,
+      "bimestre_1": 18,
+      "bimestre_2": 18,
+      "bimestre_3": 15,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 267,
+      "alumno_id": 27,
+      "curso_id": 7,
+      "bimestre_1": 19,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 268,
+      "alumno_id": 27,
+      "curso_id": 8,
+      "bimestre_1": 20,
+      "bimestre_2": 20,
+      "bimestre_3": 19,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 269,
+      "alumno_id": 27,
+      "curso_id": 9,
+      "bimestre_1": 12,
+      "bimestre_2": 12,
+      "bimestre_3": 12,
+      "bimestre_4": 12,
+      "promedio_final": 12
+    },
+    {
+      "id": 270,
+      "alumno_id": 27,
+      "curso_id": 10,
+      "bimestre_1": 13,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 271,
+      "alumno_id": 28,
+      "curso_id": 1,
+      "bimestre_1": 14,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 272,
+      "alumno_id": 28,
+      "curso_id": 2,
+      "bimestre_1": 15,
+      "bimestre_2": 16,
+      "bimestre_3": 17,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 273,
+      "alumno_id": 28,
+      "curso_id": 3,
+      "bimestre_1": 16,
+      "bimestre_2": 17,
+      "bimestre_3": 19,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 274,
+      "alumno_id": 28,
+      "curso_id": 4,
+      "bimestre_1": 17,
+      "bimestre_2": 18,
+      "bimestre_3": 12,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 275,
+      "alumno_id": 28,
+      "curso_id": 5,
+      "bimestre_1": 18,
+      "bimestre_2": 19,
+      "bimestre_3": 14,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 276,
+      "alumno_id": 28,
+      "curso_id": 6,
+      "bimestre_1": 19,
+      "bimestre_2": 20,
+      "bimestre_3": 16,
+      "bimestre_4": 15,
+      "promedio_final": 18
+    },
+    {
+      "id": 277,
+      "alumno_id": 28,
+      "curso_id": 7,
+      "bimestre_1": 20,
+      "bimestre_2": 12,
+      "bimestre_3": 18,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 278,
+      "alumno_id": 28,
+      "curso_id": 8,
+      "bimestre_1": 12,
+      "bimestre_2": 13,
+      "bimestre_3": 20,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 279,
+      "alumno_id": 28,
+      "curso_id": 9,
+      "bimestre_1": 13,
+      "bimestre_2": 14,
+      "bimestre_3": 13,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 280,
+      "alumno_id": 28,
+      "curso_id": 10,
+      "bimestre_1": 14,
+      "bimestre_2": 15,
+      "bimestre_3": 15,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 281,
+      "alumno_id": 29,
+      "curso_id": 1,
+      "bimestre_1": 15,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 282,
+      "alumno_id": 29,
+      "curso_id": 2,
+      "bimestre_1": 16,
+      "bimestre_2": 18,
+      "bimestre_3": 18,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 283,
+      "alumno_id": 29,
+      "curso_id": 3,
+      "bimestre_1": 17,
+      "bimestre_2": 19,
+      "bimestre_3": 20,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 284,
+      "alumno_id": 29,
+      "curso_id": 4,
+      "bimestre_1": 18,
+      "bimestre_2": 20,
+      "bimestre_3": 13,
+      "bimestre_4": 12,
+      "promedio_final": 16
+    },
+    {
+      "id": 285,
+      "alumno_id": 29,
+      "curso_id": 5,
+      "bimestre_1": 19,
+      "bimestre_2": 12,
+      "bimestre_3": 15,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 286,
+      "alumno_id": 29,
+      "curso_id": 6,
+      "bimestre_1": 20,
+      "bimestre_2": 13,
+      "bimestre_3": 17,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 287,
+      "alumno_id": 29,
+      "curso_id": 7,
+      "bimestre_1": 12,
+      "bimestre_2": 14,
+      "bimestre_3": 19,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 288,
+      "alumno_id": 29,
+      "curso_id": 8,
+      "bimestre_1": 13,
+      "bimestre_2": 15,
+      "bimestre_3": 12,
+      "bimestre_4": 15,
+      "promedio_final": 14
+    },
+    {
+      "id": 289,
+      "alumno_id": 29,
+      "curso_id": 9,
+      "bimestre_1": 14,
+      "bimestre_2": 16,
+      "bimestre_3": 14,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 290,
+      "alumno_id": 29,
+      "curso_id": 10,
+      "bimestre_1": 15,
+      "bimestre_2": 17,
+      "bimestre_3": 16,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 291,
+      "alumno_id": 30,
+      "curso_id": 1,
+      "bimestre_1": 16,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    },
+    {
+      "id": 292,
+      "alumno_id": 30,
+      "curso_id": 2,
+      "bimestre_1": 17,
+      "bimestre_2": 20,
+      "bimestre_3": 19,
+      "bimestre_4": 18,
+      "promedio_final": 19
+    },
+    {
+      "id": 293,
+      "alumno_id": 30,
+      "curso_id": 3,
+      "bimestre_1": 18,
+      "bimestre_2": 12,
+      "bimestre_3": 12,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 294,
+      "alumno_id": 30,
+      "curso_id": 4,
+      "bimestre_1": 19,
+      "bimestre_2": 13,
+      "bimestre_3": 14,
+      "bimestre_4": 15,
+      "promedio_final": 15
+    },
+    {
+      "id": 295,
+      "alumno_id": 30,
+      "curso_id": 5,
+      "bimestre_1": 20,
+      "bimestre_2": 14,
+      "bimestre_3": 16,
+      "bimestre_4": 18,
+      "promedio_final": 17
+    },
+    {
+      "id": 296,
+      "alumno_id": 30,
+      "curso_id": 6,
+      "bimestre_1": 12,
+      "bimestre_2": 15,
+      "bimestre_3": 18,
+      "bimestre_4": 12,
+      "promedio_final": 14
+    },
+    {
+      "id": 297,
+      "alumno_id": 30,
+      "curso_id": 7,
+      "bimestre_1": 13,
+      "bimestre_2": 16,
+      "bimestre_3": 20,
+      "bimestre_4": 15,
+      "promedio_final": 16
+    },
+    {
+      "id": 298,
+      "alumno_id": 30,
+      "curso_id": 8,
+      "bimestre_1": 14,
+      "bimestre_2": 17,
+      "bimestre_3": 13,
+      "bimestre_4": 18,
+      "promedio_final": 16
+    },
+    {
+      "id": 299,
+      "alumno_id": 30,
+      "curso_id": 9,
+      "bimestre_1": 15,
+      "bimestre_2": 18,
+      "bimestre_3": 15,
+      "bimestre_4": 12,
+      "promedio_final": 15
+    },
+    {
+      "id": 300,
+      "alumno_id": 30,
+      "curso_id": 10,
+      "bimestre_1": 16,
+      "bimestre_2": 19,
+      "bimestre_3": 17,
+      "bimestre_4": 15,
+      "promedio_final": 17
+    }
+  ]
 };
 
 export const CONFIG_HORAS_SECUNDARIA = [
