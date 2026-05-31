@@ -64,7 +64,7 @@ export class HistorialEscolar implements OnInit {
   }
 
   cargarHistorialAcademico(alumnoId: number) {
-    this.calificaciones = SAN_ALFONSO_DB.calificaciones
+    this.calificaciones = SAN_ALFONSO_DB.notas
       .filter(registro => registro.alumno_id === alumnoId)
       .map(registro => ({
         ...registro,
