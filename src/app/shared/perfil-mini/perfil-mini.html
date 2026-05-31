@@ -1,1 +1,32 @@
-<p>perfil-mini works!</p>
+<div class="dropdown" *ngIf="usuario">
+  <button class="btn btn-link text-decoration-none dropdown-toggle d-flex align-items-center gap-2 p-1 text-dark" 
+          type="button" id="perfilMiniDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="border: none; box-shadow: none;">
+    <div class="avatar-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold shadow-sm">
+      {{ iniciales }}
+    </div>
+    <span class="d-none d-md-inline fw-semibold text-truncate" style="max-width: 150px;">
+      {{ usuario.nombre }} {{ usuario.apellido }}
+    </span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg p-2 mt-2" aria-labelledby="perfilMiniDropdown" style="border-radius: 12px; min-width: 200px;">
+    <li class="px-3 py-2 border-bottom mb-2">
+      <div class="fw-bold text-dark text-truncate">{{ usuario.nombre }} {{ usuario.apellido }}</div>
+      <small class="text-muted d-block text-capitalize">
+        <i class="bi" [class.bi-person-fill]="usuario.role === 'alumno'" [class.bi-briefcase-fill]="usuario.role === 'docente'"></i>
+        {{ usuario.role === 'alumno' ? 'Alumno' : 'Docente' }}
+      </small>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center gap-2 py-2 text-dark rounded-3" (click)="onVerPerfil()" style="cursor: pointer;">
+        <i class="bi bi-person-circle text-primary fs-5"></i>
+        <span>Mi Perfil</span>
+      </a>
+    </li>
+    <li>
+      <a class="dropdown-item d-flex align-items-center gap-2 py-2 text-danger rounded-3" (click)="cerrarSesion()" style="cursor: pointer;">
+        <i class="bi bi-box-arrow-right fs-5"></i>
+        <span>Cerrar Sesión</span>
+      </a>
+    </li>
+  </ul>
+</div>

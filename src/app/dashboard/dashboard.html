@@ -1,35 +1,47 @@
-<p>dashboard works!</p>
+<p class="d-none">dashboard works!</p>
 <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-2 shadow-sm">
   <div class="container-fluid d-flex align-items-center">
 
     <div style="width: 250px;">
-      <a class="navbar-brand d-flex align-items-center" href="#">
+      <a class="navbar-brand d-flex align-items-center" href="#" (click)="cambiarSeccion(usuarioRol === 'alumno' ? 'cursos' : 'aulas'); $event.preventDefault()">
         <img src="assets/logo-san-alfonso.png" alt="San Alfonso" height="40">
       </a>
     </div>
 
     <div class="flex-grow-1">
       <ul class="navbar-nav justify-content-center gap-4">
-        <li class="nav-item">
-          <a class="nav-link fw-semibold" [class.active]="seccionActiva === 'cursos'" (click)="cambiarSeccion('cursos')">Cursos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-semibold" [class.active]="seccionActiva === 'horarios'" (click)="cambiarSeccion('horarios')">Horarios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-semibold" [class.active]="seccionActiva === 'mensajes'" (click)="cambiarSeccion('mensajes')">Mensajes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-semibold" [class.active]="seccionActiva === 'notificaciones'" (click)="cambiarSeccion('notificaciones')">Notificaciones</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-semibold" [class.active]="seccionActiva === 'finanzas'" (click)="cambiarSeccion('finanzas')">Finanzas</a>
-        </li>
+        @if (usuarioRol === 'alumno') {
+          <li class="nav-item">
+            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'cursos'" (click)="cambiarSeccion('cursos')" style="cursor: pointer;">Cursos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'horarios'" (click)="cambiarSeccion('horarios')" style="cursor: pointer;">Horarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'mensajes'" (click)="cambiarSeccion('mensajes')" style="cursor: pointer;">Mensajes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'notificaciones'" (click)="cambiarSeccion('notificaciones')" style="cursor: pointer;">Notificaciones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'finanzas'" (click)="cambiarSeccion('finanzas')" style="cursor: pointer;">Finanzas</a>
+          </li>
+        } @else if (usuarioRol === 'docente') {
+          <li class="nav-item">
+            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'aulas'" (click)="cambiarSeccion('aulas')" style="cursor: pointer;">Mis Aulas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'mensajes'" (click)="cambiarSeccion('mensajes')" style="cursor: pointer;">Mensajes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'notificaciones'" (click)="cambiarSeccion('notificaciones')" style="cursor: pointer;">Notificaciones</a>
+          </li>
+        }
       </ul>
     </div>
 
     <div class="d-flex justify-content-end" style="width: 250px;">
-      <app-perfil-mini></app-perfil-mini>
+      <app-perfil-mini (verPerfil)="cambiarSeccion('perfil')"></app-perfil-mini>
     </div>
 
   </div>
@@ -47,6 +59,10 @@
       <app-notificaciones></app-notificaciones>
     } @else if (seccionActiva === 'finanzas') {
       <app-finanzas></app-finanzas>
+    } @else if (seccionActiva === 'perfil') {
+      <app-perfil></app-perfil>
+    } @else if (seccionActiva === 'aulas') {
+      <app-aulas></app-aulas>
     }
   </main>
 </div>

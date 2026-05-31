@@ -1,1 +1,46 @@
-<p>horario works!</p>
+<div class="container py-4">
+  <div class="mb-4">
+    <h3 class="fw-bold text-dark mb-1">Mi Horario Escolar</h3>
+    <p class="text-muted mb-0">
+      <i class="bi bi-calendar3 me-1"></i> Aula: <span class="fw-semibold text-dark">{{ aulaActual?.grado }} "{{ aulaActual?.seccion }}"</span>
+    </p>
+  </div>
+
+  <div class="table-responsive bg-white shadow-sm" style="border-radius: 15px; overflow: hidden;">
+    <table class="table table-bordered text-center align-middle mb-0" style="min-width: 800px;">
+      
+      <thead class="bg-primary text-white">
+        <tr>
+          <th class="py-3 bg-primary text-white border-0" style="width: 15%;">Hora</th>
+          @for (dia of dias; track dia) {
+            <th class="py-3 bg-primary text-white border-0">{{ dia }}</th>
+          }
+        </tr>
+      </thead>
+      
+      <tbody>
+        @for (bloque of horas; track bloque.hora; let i = $index) {
+          <tr>
+            <td class="fw-bold bg-light text-secondary py-3 border-end">{{ bloque.hora }}</td>
+            
+            @if (bloque.tipo === 'recreo') {
+              <td colspan="5" class="bg-warning bg-opacity-25 fw-bold text-warning-emphasis py-2 letter-spacing-1">
+                <i class="bi bi-cup-hot-fill me-2"></i> R E C R E O
+              </td>
+            } 
+            @else {
+              @for (dia of dias; track dia) {
+                <td class="py-3">
+                  <div class="badge bg-primary bg-opacity-10 text-primary border border-primary-subtle p-2 w-100 text-wrap lh-base" style="border-radius: 8px; font-size: 0.85rem;">
+                    {{ horarioSemanal[dia][i] }}
+                  </div>
+                </td>
+              }
+            }
+          </tr>
+        }
+      </tbody>
+
+    </table>
+  </div>
+</div>
