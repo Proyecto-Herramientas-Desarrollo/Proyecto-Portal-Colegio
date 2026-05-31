@@ -1,3 +1,4 @@
+import { authGuard } from './auth-guard';
 import { Routes } from '@angular/router';
 import { Login } from './auth/login/login';
 import { DashboardComponent } from './dashboard/dashboard'; // Importamos el trabajo de tu compañero
@@ -5,5 +6,5 @@ import { DashboardComponent } from './dashboard/dashboard'; // Importamos el tra
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: Login },
-  { path: 'dashboard', component: DashboardComponent }, // Esta es la ruta que faltaba
+  { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] }
 ];
