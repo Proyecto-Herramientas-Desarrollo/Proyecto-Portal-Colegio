@@ -1,0 +1,85 @@
+.container-tramites {
+  animation: fadeIn 0.4s ease-in;
+}
+
+.header-section {
+  margin-bottom: 25px;
+}
+
+.custom-select {
+  max-width: 350px;
+  cursor: pointer;
+}
+
+.btn-animado {
+  transition: transform 0.2s;
+}
+
+.btn-animado:hover {
+  transform: translateY(-2px);
+}
+
+/* ================== MODAL DE DNI ================== */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px); /* Efecto cristalino moderno */
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1050;
+  animation: fadeIn 0.2s;
+}
+
+.modal-custom {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  width: 90%; max-width: 420px;
+  animation: slideDown 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-header-custom {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 15px;
+}
+
+.btn-close-custom {
+  background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #aaa; transition: color 0.2s; line-height: 1;
+}
+
+.btn-close-custom:hover { color: #333; }
+.modal-body-custom { margin-bottom: 25px; }
+.modal-footer-custom { display: flex; justify-content: flex-end; }
+
+/* ================== TOAST DE ÉXITO ================== */
+.toast-custom {
+  position: fixed;
+  bottom: 40px; right: 40px;
+  background: #d4edda;
+  color: #155724;
+  border-left: 6px solid #28a745;
+  padding: 18px 25px;
+  border-radius: 10px;
+  z-index: 1100;
+  transform: translateX(200%); /* Oculto a la derecha */
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.toast-custom.show {
+  transform: translateX(0); /* Entra a la pantalla */
+}
+
+.toast-content { display: flex; align-items: center; gap: 15px; }
+
+.icon-success {
+  background: #28a745; color: white; border-radius: 50%;
+  width: 30px; height: 30px; display: flex; justify-content: center; 
+  align-items: center; font-weight: bold; font-size: 1.2rem;
+}
+
+/* Animaciones Base */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideDown { 
+  from { opacity: 0; transform: translateY(-40px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}

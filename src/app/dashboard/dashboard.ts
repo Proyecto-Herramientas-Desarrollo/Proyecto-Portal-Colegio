@@ -11,6 +11,8 @@ import { Finanzas } from '../pages/alumno/finanzas/finanzas';
 import { HistorialEscolar } from '../pages/alumno/historial-escolar/historial-escolar';
 import { PerfilComponent } from '../pages/perfil/perfil';
 import { Aulas } from '../pages/docente/aulas/aulas';
+// AQUÍ IMPORTAMOS TU NUEVO COMPONENTE:
+import { TramitesComponent } from '../pages/alumno/tramites/tramites'; 
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +27,8 @@ import { Aulas } from '../pages/docente/aulas/aulas';
     Finanzas,
     HistorialEscolar,
     PerfilComponent,
-    Aulas
+    Aulas,
+    TramitesComponent // LO AÑADIMOS AQUÍ PARA PODER USARLO
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
