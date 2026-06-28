@@ -32,10 +32,10 @@
 
           },
           "configurations": {
-            "baseHref": "/Proyecto-Portal-Colegio/",
-              "optimization": true,
-            "production": {
-              "budgets": [
+          "production": {
+          "baseHref": "/Proyecto-Portal-Colegio/",
+          "optimization": true,
+          "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
