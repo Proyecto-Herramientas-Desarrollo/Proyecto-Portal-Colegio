@@ -1,0 +1,27 @@
+name: CI Angular Proyecto Portal Colegio
+on:
+  push:
+    branches:
+      - feature-ci
+
+  pull_request:
+    branches:
+      - main
+jobs:
+  build-angular:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Descargar codigo
+      uses: actions/checkout@v4
+      
+    - name: Configurar Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: npm
+
+    - name: Instalar dependencias
+      run: npm install
+
+    - name: Construir proyecto Angular
+      run: npm run build
