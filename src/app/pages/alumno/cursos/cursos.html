@@ -28,7 +28,7 @@
               </span>
             </div>
 
-            <button class="btn btn-outline-primary w-100 fw-semibold" style="border-radius: 10px;">
+            <button class="btn btn-outline-primary w-100 fw-semibold" style="border-radius: 10px;" (click)="abrirDetalle(curso)">
               Ver Detalles
             </button>
             
@@ -38,3 +38,10 @@
     }
   </div>
 </div>
+
+@if (cursoSeleccionado) {
+  <app-detalle-curso 
+    [curso]="cursoSeleccionado" 
+    (cerrar)="cerrarDetalle()">
+  </app-detalle-curso>
+}
