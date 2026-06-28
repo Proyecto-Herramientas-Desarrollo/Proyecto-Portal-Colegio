@@ -32,6 +32,8 @@
 
           },
           "configurations": {
+            "baseHref": "/Proyecto-Portal-Colegio/",
+              "optimization": true,
             "production": {
               "budgets": [
                 {
