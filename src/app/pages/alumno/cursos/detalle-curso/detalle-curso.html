@@ -1,1 +1,146 @@
-<p>detalle-curso works!</p>
+<div class="modal-overlay" (click)="cerrarClickFuera($event)">
+  <div class="modal-custom shadow-lg">
+    
+    <div class="modal-header-custom p-4">
+      <div class="d-flex justify-content-between align-items-start w-100">
+        <div class="w-100 me-3">
+          <h2 class="fw-bold mb-1 text-white">{{ curso?.nombre }}</h2>
+          <p class="mb-3 text-white-50">
+            <i class="bi bi-clock-history me-1"></i> {{ curso?.horasSemanales }} horas semanales
+          </p>
+          
+          <div class="w-100">
+            <div class="d-flex justify-content-between text-white-50 small mb-1">
+              <span><i class="bi bi-graph-up me-1"></i> Progreso del Bimestre</span>
+              <span>45%</span>
+            </div>
+            <div class="progress" style="height: 6px; background-color: rgba(255,255,255,0.2);">
+              <div class="progress-bar bg-light" role="progressbar" style="width: 45%;"></div>
+            </div>
+          </div>
+        </div>
+        
+        <button class="btn btn-light btn-sm fw-bold shadow-sm d-flex align-items-center gap-2" (click)="cerrarModal()">
+          <i class="bi bi-x-circle text-danger"></i> Cerrar
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-body-custom p-4">
+      <ul class="nav nav-pills mb-4 custom-tabs gap-2">
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" [class.active]="tabActiva === 'avisos'" (click)="cambiarTab('avisos')">
+            <i class="bi bi-megaphone me-1"></i> Avisos
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" [class.active]="tabActiva === 'materiales'" (click)="cambiarTab('materiales')">
+            <i class="bi bi-folder2-open me-1"></i> Materiales
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" [class.active]="tabActiva === 'tareas'" (click)="cambiarTab('tareas')">
+            <i class="bi bi-journal-check me-1"></i> Tareas
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold" [class.active]="tabActiva === 'silabo'" (click)="cambiarTab('silabo')">
+            <i class="bi bi-info-square me-1"></i> Sílabo
+          </a>
+        </li>
+      </ul>
+
+      @if (tabActiva === 'avisos') {
+        <div class="d-flex flex-column gap-3">
+          @for (aviso of avisos; track aviso.id) {
+            <div class="card border-0 shadow-sm border-start border-4 border-info bg-light">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="fw-bold mb-0 text-dark">
+                    <i class="bi bi-bell-fill me-2 text-info"></i>{{ aviso.titulo }}
+                  </h6>
+                  <span class="badge bg-secondary bg-opacity-25 text-dark">
+                    <i class="bi bi-calendar-event me-1"></i>{{ aviso.fecha }}
+                  </span>
+                </div>
+                <p class="text-muted mb-0 small ms-4">{{ aviso.mensaje }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      }
+
+      @if (tabActiva === 'materiales') {
+        <div class="row g-3">
+          @for (m of materiales; track m.id) {
+            <div class="col-12 col-md-6">
+              <div class="card h-100 border-0 shadow-sm card-hover" style="background-color: #f8f9fa;">
+                <div class="card-body d-flex align-items-center">
+                  <div class="me-3 fs-2 text-danger">
+                    <i class="bi bi-file-earmark-pdf-fill"></i>
+                  </div>
+                  <div class="flex-grow-1">
+                    <h6 class="fw-bold text-dark mb-1">{{ m.titulo }}</h6>
+                    <small class="text-muted">
+                      <i class="bi bi-calendar3 me-1"></i> {{ m.fecha }} | <i class="bi bi-hdd me-1"></i> {{ m.size }}
+                    </small>
+                  </div>
+                  <button class="btn btn-outline-primary btn-sm fw-bold" (click)="descargarArchivo(m.titulo)" title="Descargar">
+                    <i class="bi bi-download"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+
+      @if (tabActiva === 'tareas') {
+        <ul class="list-group list-group-flush border rounded shadow-sm">
+          @for (t of tareas; track t.id) {
+            <li class="list-group-item p-3 d-flex justify-content-between align-items-center flex-wrap gap-3">
+              <div>
+                <h6 class="fw-bold mb-1 text-dark">
+                  <i class="bi bi-pencil-square me-2 text-primary"></i> {{ t.titulo }}
+                </h6>
+                <small class="text-danger fw-medium">
+                  <i class="bi bi-alarm me-1"></i> Límite: {{ t.limite }}
+                </small>
+              </div>
+              <div class="d-flex align-items-center">
+                <span class="badge rounded-pill px-3 py-2" 
+                      [ngClass]="{'bg-success': t.estado === 'Entregado', 'bg-warning text-dark': t.estado === 'Pendiente'}">
+                  {{ t.estado }}
+                </span>
+                @if (t.estado === 'Pendiente') {
+                  <button class="btn btn-primary btn-sm fw-bold ms-3">
+                    <i class="bi bi-cloud-arrow-up-fill me-1"></i> Subir Tarea
+                  </button>
+                }
+              </div>
+            </li>
+          }
+        </ul>
+      }
+
+      @if (tabActiva === 'silabo') {
+        <div class="card shadow-sm border-0 p-4" style="background-color: #f4f6f8;">
+          <h5 class="fw-bold text-dark mb-3">
+            <i class="bi bi-journal-text me-2"></i> Acerca del Curso de {{ curso?.nombre }}
+          </h5>
+          <p class="text-muted" style="line-height: 1.7;">
+            Este espacio contiene toda la planificación académica, normas de evaluación y recursos bibliográficos estructurados para el presente año escolar.
+          </p>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn btn-dark fw-semibold shadow-sm">
+              <i class="bi bi-printer me-1"></i> Descargar Sílabo
+            </button>
+            <button class="btn btn-outline-primary fw-semibold bg-white">
+              <i class="bi bi-chat-dots me-1"></i> Consultar al Docente
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
