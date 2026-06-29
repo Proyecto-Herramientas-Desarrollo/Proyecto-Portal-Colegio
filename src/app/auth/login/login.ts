@@ -61,6 +61,7 @@ export class Login {
       this.mensajeError = '';
 
       this.authService.login(); // 4. AVISAMOS AL GUARD QUE EL DOCENTE ENTRÓ
+      localStorage.setItem('docenteId', docente.id.toString());
       this.router.navigate(['/dashboard']);
       return;
     }
