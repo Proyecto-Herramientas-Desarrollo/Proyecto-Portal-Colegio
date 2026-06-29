@@ -1,5 +1,5 @@
 -- Supabase / PostgreSQL Schema & Seed Migration
--- Created at 2026-06-29T01:05:39.276Z
+-- Created at 2026-06-29T04:01:59.547Z
 
 -- Enable Row Level Security (RLS) or leave it disabled for now depending on configuration
 -- We will create tables first.
@@ -1285,3 +1285,132 @@ SELECT setval('public.tareas_id_seq', (SELECT MAX(id) FROM public.tareas));
 -- Seed sample Tareas Entregadas
 INSERT INTO public.tareas_entregadas (id, tarea_id, alumno_id, archivo_nombre, fecha_entrega, nota, comentario, estado) VALUES (1, 2, 3, 'trabajo_investigacion_mateo.pdf', '2026-06-19 18:30:00', 17.00, 'Buen trabajo', 'Calificado') ON CONFLICT (id) DO NOTHING;
 SELECT setval('public.tareas_entregadas_id_seq', (SELECT MAX(id) FROM public.tareas_entregadas));
+
+-- 12. AUTO-GENERATE AUTH.USERS FOR CURRENT DATA
+-- This block automatically creates auth users in Supabase for all seeded alumnos and docentes
+-- so they can log in immediately using their DNI as part of their email (e.g. DNI@colegio.edu.pe)
+-- and their default password '1234'.
+DO $$
+DECLARE
+    r_alumno RECORD;
+    r_docente RECORD;
+    new_user_id UUID;
+BEGIN
+    -- Create auth users for alumnos
+    FOR r_alumno IN SELECT id, dni, nombre, apellido FROM public.alumnos WHERE user_id IS NULL LOOP
+        SELECT id INTO new_user_id FROM auth.users WHERE email = r_alumno.dni || '@colegio.edu.pe';
+        
+        IF new_user_id IS NULL THEN
+            new_user_id := gen_random_uuid();
+            
+            INSERT INTO auth.users (
+                id,
+                instance_id,
+                aud,
+                role,
+                email,
+                encrypted_password,
+                email_confirmed_at,
+                raw_app_meta_data,
+                raw_user_meta_data,
+                is_super_admin,
+                created_at,
+                updated_at
+            ) VALUES (
+                new_user_id,
+                '00000000-0000-0000-0000-000000000000',
+                'authenticated',
+                'authenticated',
+                r_alumno.dni || '@colegio.edu.pe',
+                crypt('1234', gen_salt('bf')),
+                now(),
+                jsonb_build_object('provider', 'email', 'providers', array['email']),
+                jsonb_build_object('role', 'alumno', 'nombre', r_alumno.nombre, 'apellido', r_alumno.apellido, 'profile_id', r_alumno.id),
+                false,
+                now(),
+                now()
+            );
+            
+            INSERT INTO auth.identities (
+                id,
+                user_id,
+                identity_data,
+                provider,
+                last_sign_in_at,
+                created_at,
+                updated_at,
+                provider_id
+            ) VALUES (
+                new_user_id,
+                new_user_id,
+                jsonb_build_object('sub', new_user_id::text, 'email', r_alumno.dni || '@colegio.edu.pe'),
+                'email',
+                now(),
+                now(),
+                now(),
+                r_alumno.dni || '@colegio.edu.pe'
+            );
+        END IF;
+        
+        UPDATE public.alumnos SET user_id = new_user_id WHERE id = r_alumno.id;
+    END LOOP;
+
+    -- Create auth users for docentes
+    FOR r_docente IN SELECT id, dni, nombre, apellido FROM public.docentes WHERE user_id IS NULL LOOP
+        SELECT id INTO new_user_id FROM auth.users WHERE email = r_docente.dni || '@colegio.edu.pe';
+        
+        IF new_user_id IS NULL THEN
+            new_user_id := gen_random_uuid();
+            
+            INSERT INTO auth.users (
+                id,
+                instance_id,
+                aud,
+                role,
+                email,
+                encrypted_password,
+                email_confirmed_at,
+                raw_app_meta_data,
+                raw_user_meta_data,
+                is_super_admin,
+                created_at,
+                updated_at
+            ) VALUES (
+                new_user_id,
+                '00000000-0000-0000-0000-000000000000',
+                'authenticated',
+                'authenticated',
+                r_docente.dni || '@colegio.edu.pe',
+                crypt('1234', gen_salt('bf')),
+                now(),
+                jsonb_build_object('provider', 'email', 'providers', array['email']),
+                jsonb_build_object('role', 'docente', 'nombre', r_docente.nombre, 'apellido', r_docente.apellido, 'profile_id', r_docente.id),
+                false,
+                now(),
+                now()
+            );
+            
+            INSERT INTO auth.identities (
+                id,
+                user_id,
+                identity_data,
+                provider,
+                last_sign_in_at,
+                created_at,
+                updated_at,
+                provider_id
+            ) VALUES (
+                new_user_id,
+                new_user_id,
+                jsonb_build_object('sub', new_user_id::text, 'email', r_docente.dni || '@colegio.edu.pe'),
+                'email',
+                now(),
+                now(),
+                now(),
+                r_docente.dni || '@colegio.edu.pe'
+            );
+        END IF;
+        
+        UPDATE public.docentes SET user_id = new_user_id WHERE id = r_docente.id;
+    END LOOP;
+END $$;
