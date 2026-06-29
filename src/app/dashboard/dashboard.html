@@ -29,6 +29,9 @@
           <li class="nav-item">
             <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'historial'" (click)="cambiarSeccion('historial')" style="cursor: pointer;">Historial Académico</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'tramites'" (click)="cambiarSeccion('tramites')" style="cursor: pointer;">Trámites</a>
+          </li>
         } @else if (usuarioRol === 'docente') {
           <li class="nav-item">
             <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'aulas'" (click)="cambiarSeccion('aulas')" style="cursor: pointer;">Mis Aulas</a>
@@ -64,6 +67,8 @@
       <app-finanzas></app-finanzas>
     } @else if (seccionActiva === 'historial') {
       <app-historial-escolar></app-historial-escolar>
+    } @else if (seccionActiva === 'tramites') {
+      <app-tramites></app-tramites>
     } @else if (seccionActiva === 'perfil') {
       <app-perfil></app-perfil>
     } @else if (seccionActiva === 'aulas') {

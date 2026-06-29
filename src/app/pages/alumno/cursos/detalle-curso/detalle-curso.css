@@ -1,0 +1,46 @@
+/* Fija la pantalla oscura detrás del modal */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1050; animation: fadeIn 0.2s;
+}
+
+/* La tarjeta blanca principal */
+.modal-custom {
+  background: white; border-radius: 16px;
+  width: 90%; max-width: 800px;
+  max-height: 90vh;
+  display: flex; flex-direction: column;
+  animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden; /* Evita que el contenido se salga */
+}
+
+/* Cabecera azul */
+.modal-header-custom {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+}
+
+.modal-body-custom {
+  overflow-y: auto; /* Permite hacer scroll solo dentro de la ventana */
+}
+
+/* Botón cerrar sutil */
+.btn-close-white {
+  background: none; border: none; color: white; font-size: 1.5rem;
+  opacity: 0.7; transition: opacity 0.2s; cursor: pointer;
+}
+.btn-close-white:hover { opacity: 1; }
+
+/* Estilos de las pestañas */
+.custom-tabs .nav-link {
+  color: #555; background-color: #f8f9fa; border-radius: 8px; cursor: pointer; padding: 10px 20px; transition: 0.2s;
+}
+.custom-tabs .nav-link:hover { background-color: #e2e6ea; }
+.custom-tabs .nav-link.active {
+  background-color: #0d6efd; color: white; box-shadow: 0 4px 10px rgba(13, 110, 253, 0.25);
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
