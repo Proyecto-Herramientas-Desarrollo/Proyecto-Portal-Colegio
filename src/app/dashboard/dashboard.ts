@@ -55,4 +55,4 @@ export class DashboardComponent implements OnInit {
   cambiarSeccion(nuevaSeccion: string) {
     this.seccionActiva = nuevaSeccion;
   }
-}
+}

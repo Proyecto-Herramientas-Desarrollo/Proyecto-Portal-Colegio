@@ -1,1 +1,101 @@
-<p>mensajes works!</p>
+<div class="container py-4 animate-fade-in" style="max-width: 1100px;">
+  <div class="card shadow-sm border-0 chat-container">
+    <div class="row g-0 h-100">
+
+      <div class="col-md-4 border-end bg-white h-100 d-flex flex-column">
+        
+        <div class="p-3 border-bottom bg-light">
+          <h5 class="fw-bold mb-0 text-dark">
+            <i class="bi bi-chat-dots-fill text-primary me-2"></i>Mensajes
+          </h5>
+        </div>
+
+        <div class="p-3 border-bottom">
+          <div class="input-group">
+            <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
+            <input type="text" class="form-control bg-light border-start-0 shadow-none" placeholder="Buscar conversación...">
+          </div>
+        </div>
+
+        <div class="contact-list flex-grow-1 overflow-auto">
+          @for (contacto of contactos; track contacto.id) {
+            <div class="contact-item p-3 border-bottom d-flex align-items-center"
+                 [ngClass]="{'active-chat': contacto.activo}"
+                 (click)="seleccionarContacto(contacto)">
+
+              <div class="avatar rounded-circle bg-primary text-white d-flex justify-content-center align-items-center fw-bold me-3 shadow-sm">
+                {{ contacto.iniciales }}
+              </div>
+
+              <div class="flex-grow-1 overflow-hidden">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <h6 class="fw-bold mb-0 text-dark text-truncate">{{ contacto.nombre }}</h6>
+                  
+                  @if (contacto.unread > 0) {
+                    <span class="badge bg-danger rounded-pill">{{ contacto.unread }}</span>
+                  }
+                </div>
+                <small class="text-muted d-block text-truncate">{{ contacto.rol }}</small>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="col-md-8 h-100 d-flex flex-column bg-light-gray">
+        @if (contactoSeleccionado) {
+          
+          <div class="p-3 border-bottom bg-white d-flex align-items-center justify-content-between shadow-sm z-1">
+            <div class="d-flex align-items-center">
+              <div class="avatar-sm rounded-circle bg-primary text-white d-flex justify-content-center align-items-center fw-bold me-3">
+                {{ contactoSeleccionado.iniciales }}
+              </div>
+              <div>
+                <h6 class="fw-bold mb-0 text-dark">{{ contactoSeleccionado.nombre }}</h6>
+                <small class="text-success fw-medium">
+                  <i class="bi bi-circle-fill me-1" style="font-size: 8px;"></i>En línea
+                </small>
+              </div>
+            </div>
+            <button class="btn btn-light text-muted border shadow-sm"><i class="bi bi-three-dots-vertical"></i></button>
+          </div>
+
+          <div class="chat-history p-4 flex-grow-1 overflow-auto" id="chat-history">
+            @for (msg of mensajesChat; track msg.id) {
+              <div class="d-flex mb-3" [ngClass]="{'justify-content-end': msg.tipo === 'out', 'justify-content-start': msg.tipo === 'in'}">
+                
+                <div class="message-bubble p-3 shadow-sm"
+                     [ngClass]="{'bg-primary text-white rounded-out': msg.tipo === 'out', 'bg-white text-dark rounded-in border': msg.tipo === 'in'}">
+                  
+                  <p class="mb-1" style="line-height: 1.5;">{{ msg.texto }}</p>
+                  
+                  <small class="d-block text-end opacity-75" style="font-size: 0.75rem;">
+                    {{ msg.hora }}
+                    @if (msg.tipo === 'out') {
+                      <i class="bi bi-check2-all ms-1 text-info"></i>
+                    }
+                  </small>
+                </div>
+              </div>
+            }
+          </div>
+
+          <div class="p-3 bg-white border-top">
+            <div class="input-group">
+              <button class="btn btn-light border text-muted" title="Adjuntar archivo"><i class="bi bi-paperclip"></i></button>
+              
+              <input type="text" class="form-control shadow-none" placeholder="Escribe un mensaje aquí..."
+                     [(ngModel)]="nuevoMensaje"
+                     (keyup.enter)="enviarMensaje()">
+                     
+              <button class="btn btn-primary fw-bold" (click)="enviarMensaje()">
+                <i class="bi bi-send-fill me-1"></i> Enviar
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+</div>
