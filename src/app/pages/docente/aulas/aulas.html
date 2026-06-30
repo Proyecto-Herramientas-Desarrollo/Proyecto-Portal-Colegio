@@ -1,89 +1,477 @@
-<div class="aulas-container">
-  <h2>Panel del Docente</h2>
+<div class="container py-4 animate-fade-in" style="max-width: 1100px;">
 
+  <!-- BANNER / CABECERA -->
+  <div class="card border-0 bg-primary text-white rounded-4 shadow-sm mb-4 overflow-hidden"
+       style="background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);">
+    <div class="card-body p-4 d-flex align-items-center justify-content-between">
+      <div>
+        <h2 class="fw-bold mb-1">Panel de Control Docente</h2>
+        <p class="mb-0 opacity-90"><i class="bi bi-person-badge-fill me-1"></i> {{ docenteNombre || 'Profesor San Alfonso' }}</p>
+      </div>
+      <div class="d-none d-md-block opacity-25">
+        <i class="bi bi-building-gear" style="font-size: 4rem;"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: SELECCIONAR CURSO / AULA -->
   <div *ngIf="!aulaSeleccionada">
-    <h3>Mis Cursos y Aulas Asignadas</h3>
-    <p class="text-muted">Seleccione un aula para ver a los estudiantes y registrar asistencias.</p>
+    <div class="mb-4">
+      <h4 class="fw-bold text-dark mb-1">Mis Cursos y Aulas Asignadas</h4>
+      <p class="text-muted mb-0">Seleccione un curso de su horario para gestionar sus materiales, tareas y calificaciones.</p>
+    </div>
 
-    <div class="cards-grid">
-      <div class="card" *ngFor="let aula of aulasAsignadas" (click)="seleccionarAula(aula)">
-        <div class="card-body">
-          <h4>{{ aula.grado }}</h4>
-          <p>Sección: "{{ aula.seccion }}"</p>
-          <p>Turno: {{ aula.turno }}</p>
-          <button class="btn btn-primary">Ver Estudiantes</button>
+    <!-- Spinner de carga -->
+    <div *ngIf="cargandoAulas" class="text-center py-5">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="text-muted mt-2 small">Cargando horario docente...</p>
+    </div>
+
+    <div class="row g-3" *ngIf="!cargandoAulas">
+      @for (aula of aulasAsignadas; track aula.aula_id + '-' + aula.curso_id) {
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm rounded-3 h-100 course-card transition-all"
+               (click)="seleccionarAula(aula)" style="cursor: pointer;">
+            <div class="card-body p-4 d-flex flex-column justify-content-between">
+              <div>
+                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary-subtle px-3 py-1 rounded-pill mb-3" style="font-size: 0.78rem;">
+                  {{ aula.grado }}
+                </span>
+                <h5 class="fw-bold text-dark mb-2">{{ aula.curso_nombre }}</h5>
+                <p class="text-muted small mb-0"><i class="bi bi-door-closed me-1"></i> Sección: "{{ aula.seccion }}"</p>
+              </div>
+              <div class="mt-4 pt-3 border-top d-flex align-items-center justify-content-between text-primary fw-bold" style="font-size: 0.9rem;">
+                <span>Gestionar curso</span>
+                <i class="bi bi-arrow-right-short fs-4"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <div class="col-12">
+          <div class="alert alert-warning text-center border-0 shadow-sm p-4">
+            <i class="bi bi-exclamation-triangle fs-3 d-block mb-2 text-warning"></i>
+            <strong>No se encontraron aulas asignadas.</strong>
+            <p class="text-muted small mb-0 mt-1">Verifique su asignación en la base de datos de horarios de Supabase.</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2: GESTIÓN DE AULA / CURSO SELECCIONADO -->
+  <div *ngIf="aulaSeleccionada">
+    
+    <!-- Botón Volver y Nombre -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-light border shadow-sm rounded-circle d-flex align-items-center justify-content-center"
+                style="width: 40px; height: 40px;" (click)="volverListaAulas()" title="Volver">
+          <i class="bi bi-arrow-left"></i>
+        </button>
+        <div>
+          <h4 class="fw-bold text-dark mb-1">{{ aulaSeleccionada.curso_nombre }}</h4>
+          <span class="text-muted small">
+            {{ aulaSeleccionada.grado }} "{{ aulaSeleccionada.seccion }}"
+          </span>
+        </div>
+      </div>
+
+      <!-- Tabs de Gestión -->
+      <div class="bg-light p-1 rounded-3 d-flex gap-1" style="width: fit-content;">
+        <button class="btn btn-sm rounded-2 px-3 transition-all fw-semibold"
+                [class.btn-white]="tabActiva === 'asistencia'"
+                [class.shadow-sm]="tabActiva === 'asistencia'"
+                [class.text-dark]="tabActiva === 'asistencia'"
+                [class.text-muted]="tabActiva !== 'asistencia'"
+                (click)="cambiarTab('asistencia')">
+          <i class="bi bi-calendar-check me-1"></i> Asistencia
+        </button>
+        <button class="btn btn-sm rounded-2 px-3 transition-all fw-semibold"
+                [class.btn-white]="tabActiva === 'materiales'"
+                [class.shadow-sm]="tabActiva === 'materiales'"
+                [class.text-dark]="tabActiva === 'materiales'"
+                [class.text-muted]="tabActiva !== 'materiales'"
+                (click)="cambiarTab('materiales')">
+          <i class="bi bi-folder-fill me-1"></i> Materiales
+        </button>
+        <button class="btn btn-sm rounded-2 px-3 transition-all fw-semibold"
+                [class.btn-white]="tabActiva === 'tareas'"
+                [class.shadow-sm]="tabActiva === 'tareas'"
+                [class.text-dark]="tabActiva === 'tareas'"
+                [class.text-muted]="tabActiva !== 'tareas'"
+                (click)="cambiarTab('tareas')">
+          <i class="bi bi-journal-text me-1"></i> Tareas
+        </button>
+        <button class="btn btn-sm rounded-2 px-3 transition-all fw-semibold"
+                [class.btn-white]="tabActiva === 'notas'"
+                [class.shadow-sm]="tabActiva === 'notas'"
+                [class.text-dark]="tabActiva === 'notas'"
+                [class.text-muted]="tabActiva !== 'notas'"
+                (click)="cambiarTab('notas')">
+          <i class="bi bi-star-fill me-1"></i> Calificaciones
+        </button>
+      </div>
+    </div>
+
+    <!-- Mensajes Flotantes de Éxito / Error -->
+    <div *ngIf="mensajeExito" class="alert alert-success border-0 shadow-sm mb-4 animate-fade-in">
+      <i class="bi bi-check-circle-fill me-2"></i> {{ mensajeExito }}
+    </div>
+    <div *ngIf="mensajeError" class="alert alert-danger border-0 shadow-sm mb-4 animate-fade-in">
+      <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ mensajeError }}
+    </div>
+
+    <!-- CONTENIDO DE PESTAÑAS -->
+
+    <!-- PESTAÑA A: ASISTENCIA -->
+    <div *ngIf="tabActiva === 'asistencia'" class="animate-fade-in bg-white p-4 rounded-4 shadow-sm border">
+      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4 pb-3 border-bottom">
+        <div>
+          <h5 class="fw-bold text-dark mb-1">Registro Diario de Asistencia</h5>
+          <p class="text-muted small mb-0">Seleccione la fecha y marque la asistencia de cada estudiante.</p>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <label for="fecha" class="small text-muted fw-bold text-nowrap mb-0">Fecha:</label>
+          <input type="date" id="fecha" [(ngModel)]="fechaAsistencia" class="form-control form-control-sm rounded-2 shadow-xs" style="width: auto;">
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th class="border-0 bg-light text-muted fw-bold px-3 py-2" style="font-size:0.85rem; border-radius: 8px 0 0 8px;">Estudiante</th>
+              <th class="border-0 bg-light text-muted fw-bold text-center py-2" style="font-size:0.85rem; width: 45%;">Control de Asistencia</th>
+              <th class="border-0 bg-light text-muted fw-bold px-3 py-2" style="font-size:0.85rem; border-radius: 0 8px 8px 0; width: 30%;">Comentario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let est of estudiantes">
+              <td class="px-3 fw-semibold text-dark">{{ est.nombre_completo }}</td>
+              <td class="text-center">
+                <div class="btn-group btn-group-sm rounded-pill p-1 bg-light border" role="group">
+                  <button type="button" class="btn rounded-pill px-3 transition-all"
+                          [class.btn-success]="asistencias[est.id]?.estado === 'Asiste'"
+                          [class.btn-light]="asistencias[est.id]?.estado !== 'Asiste'"
+                          (click)="marcarAsistencia(est.id, 'Asiste')">Asiste</button>
+                  <button type="button" class="btn rounded-pill px-3 transition-all"
+                          [class.btn-warning]="asistencias[est.id]?.estado === 'Tarde'"
+                          [class.btn-light]="asistencias[est.id]?.estado !== 'Tarde'"
+                          (click)="marcarAsistencia(est.id, 'Tarde')">Tarde</button>
+                  <button type="button" class="btn rounded-pill px-3 transition-all"
+                          [class.btn-danger]="asistencias[est.id]?.estado === 'Falta'"
+                          [class.btn-light]="asistencias[est.id]?.estado !== 'Falta'"
+                          (click)="marcarAsistencia(est.id, 'Falta')">Falta</button>
+                  <button type="button" class="btn rounded-pill px-3 transition-all"
+                          [class.btn-info]="asistencias[est.id]?.estado === 'Justificado'"
+                          [class.btn-light]="asistencias[est.id]?.estado !== 'Justificado'"
+                          (click)="marcarAsistencia(est.id, 'Justificado')">Justifica</button>
+                </div>
+              </td>
+              <td>
+                <input type="text" class="form-control form-control-sm shadow-xs rounded-2"
+                       placeholder="Agregar nota..." [(ngModel)]="asistencias[est.id].comentario">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 pt-3 border-top text-end" *ngIf="estudiantes.length > 0">
+        <button class="btn btn-primary px-4 fw-bold shadow-sm" (click)="guardarAsistencias()">
+          <i class="bi bi-cloud-arrow-up-fill me-1"></i> Guardar Asistencia de Hoy
+        </button>
+      </div>
+    </div>
+
+    <!-- PESTAÑA B: MATERIALES DE CLASE -->
+    <div *ngIf="tabActiva === 'materiales'" class="animate-fade-in row g-4">
+      
+      <!-- Listado de Materiales -->
+      <div class="col-12 col-lg-7">
+        <div class="bg-white p-4 rounded-4 shadow-sm border h-100">
+          <h5 class="fw-bold text-dark mb-4 pb-2 border-bottom">Materiales de Clase Publicados</h5>
+          
+          <div class="d-flex flex-column gap-3 overflow-auto" style="max-height: 480px;">
+            @for (mat of materiales; track mat.id) {
+              <div class="p-3 border rounded-3 d-flex justify-content-between align-items-center bg-light bg-opacity-50">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="rounded-3 bg-white border p-2 d-flex align-items-center justify-content-center" style="width: 46px; height: 46px;">
+                    <i class="bi fs-4" [ngClass]="{
+                      'bi-file-pdf-fill text-danger': mat.tipo === 'PDF',
+                      'bi-file-word-fill text-primary': mat.tipo === 'DOCX' || mat.tipo === 'DOC',
+                      'bi-file-earmark-ppt-fill text-warning': mat.tipo === 'PPTX',
+                      'bi-file-earmark-zip-fill text-secondary': mat.tipo === 'ZIP'
+                    }"></i>
+                  </div>
+                  <div>
+                    <h6 class="fw-bold text-dark mb-1">{{ mat.titulo }}</h6>
+                    <small class="text-muted d-block">{{ mat.descripcion || 'Sin descripción' }}</small>
+                    <span class="text-muted small" style="font-size:0.7rem;">{{ mat.size }} | {{ mat.fecha_subida | date:'dd/MM/yyyy' }}</span>
+                  </div>
+                </div>
+                <a [href]="mat.archivo_url" target="_blank" class="btn btn-sm btn-light border shadow-xs" title="Descargar">
+                  <i class="bi bi-download text-muted"></i>
+                </a>
+              </div>
+            } @empty {
+              <div class="text-center py-5 text-muted small">No hay materiales publicados para este curso.</div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario para Subir Material -->
+      <div class="col-12 col-lg-5">
+        <div class="bg-white p-4 rounded-4 shadow-sm border h-100">
+          <h5 class="fw-bold text-dark mb-4 pb-2 border-bottom">Publicar Nuevo Material</h5>
+          
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-muted">Sesión Pedagógica</label>
+            <select class="form-select shadow-none" [(ngModel)]="nuevoMaterial.sesion">
+              <option value="Sesión 1">Sesión 1 - Introducción</option>
+              <option value="Sesión 2">Sesión 2 - Desarrollo Temático</option>
+              <option value="Sesión 3">Sesión 3 - Profundización</option>
+              <option value="Sesión 4">Sesión 4 - Taller Práctico</option>
+              <option value="Sesión 5">Sesión 5 - Repaso Semanal</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-muted">Título del Material</label>
+            <input type="text" class="form-control shadow-none" placeholder="Ej: Ficha de lectura integradora" [(ngModel)]="nuevoMaterial.titulo">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-muted">Descripción complementaria</label>
+            <textarea class="form-control shadow-none" rows="3" placeholder="Instrucciones breves..." [(ngModel)]="nuevoMaterial.descripcion"></textarea>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label small fw-bold text-muted">Seleccionar Archivo</label>
+            <div class="file-upload-wrapper border border-dashed rounded-3 p-3 text-center bg-light">
+              <i class="bi bi-cloud-arrow-up fs-2 text-muted"></i>
+              <span class="small text-muted d-block mt-1">Arrastra tu archivo o haz clic</span>
+              <input type="file" id="fileDocente" class="d-none" (change)="onMaterialFileSelected($event)">
+              <label for="fileDocente" class="btn btn-xs btn-outline-primary px-3 rounded-pill mt-2">Buscar archivo</label>
+              
+              <div class="mt-2 text-primary fw-semibold small text-truncate" *ngIf="nuevoMaterial.nombreArchivo">
+                <i class="bi bi-check-circle-fill text-success me-1"></i>{{ nuevoMaterial.nombreArchivo }}
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary w-100 fw-bold py-2 shadow-sm" (click)="subirMaterial()" [disabled]="subiendoMaterial">
+            <span class="spinner-border spinner-border-sm me-1" *ngIf="subiendoMaterial"></span>
+            Publicar en el Aula
+          </button>
         </div>
       </div>
     </div>
 
-    <div *ngIf="aulasAsignadas.length === 0" class="alert alert-warning mt-3">
-      No tienes aulas asignadas en tu horario.
-    </div>
-  </div>
-
-  <div *ngIf="aulaSeleccionada">
-    <div class="header-action">
-      <button class="btn btn-secondary" (click)="volverListaAulas()">← Volver a Mis Aulas</button>
-      <h3>Lista de estudiantes - {{ aulaSeleccionada.grado }} "{{ aulaSeleccionada.seccion }}"</h3>
-    </div>
-
-    <div class="asistencia-controls mt-3">
-      <label for="fecha"><strong>Fecha de asistencia:</strong></label>
-      <input type="date" id="fecha" [(ngModel)]="fechaAsistencia" class="form-control" style="width: auto; display: inline-block; margin-left: 10px;">
-    </div>
-
-    <div *ngIf="mensajeExito" class="alert alert-success mt-3">
-      {{ mensajeExito }}
-    </div>
-
-    <table class="table mt-3">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>DNI</th>
-          <th>Apellidos y Nombres</th>
-          <th>Asistencia</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let estudiante of estudiantes">
-          <td>{{ estudiante.id }}</td>
-          <td>{{ estudiante.dni }}</td>
-          <td>{{ estudiante.apellido }}, {{ estudiante.nombre }}</td>
-          <td>
-            <div class="radio-group">
-              <label>
-                <input type="radio"
-                       [name]="'asistencia_' + estudiante.id"
-                       [checked]="asistencias[estudiante.id] === 'Presente'"
-                       (change)="marcarAsistencia(estudiante.id, 'Presente')"> Presente
-              </label>
-              <label>
-                <input type="radio"
-                       [name]="'asistencia_' + estudiante.id"
-                       [checked]="asistencias[estudiante.id] === 'Falta'"
-                       (change)="marcarAsistencia(estudiante.id, 'Falta')"> Falta
-              </label>
-              <label>
-                <input type="radio"
-                       [name]="'asistencia_' + estudiante.id"
-                       [checked]="asistencias[estudiante.id] === 'Tardanza'"
-                       (change)="marcarAsistencia(estudiante.id, 'Tardanza')"> Tardanza
-              </label>
+    <!-- PESTAÑA C: TAREAS Y EVALUACIONES -->
+    <div *ngIf="tabActiva === 'tareas'" class="animate-fade-in">
+      <div class="row g-4" *ngIf="!tareaSeleccionada">
+        
+        <!-- Listado de tareas creadas -->
+        <div class="col-12 col-lg-7">
+          <div class="bg-white p-4 rounded-4 shadow-sm border h-100">
+            <h5 class="fw-bold text-dark mb-4 pb-2 border-bottom">Tareas Asignadas</h5>
+            
+            <div class="d-flex flex-column gap-3 overflow-auto" style="max-height: 480px;">
+              @for (t of tareas; track t.id) {
+                <div class="p-3 border rounded-3 bg-light bg-opacity-50">
+                  <div class="d-flex justify-content-between align-items-start gap-2">
+                    <div>
+                      <h6 class="fw-bold text-dark mb-1">{{ t.titulo }}</h6>
+                      <p class="text-muted small mb-2">{{ t.descripcion || 'Sin descripción' }}</p>
+                      <small class="text-danger d-block fw-semibold mb-2">
+                        <i class="bi bi-clock-fill me-1"></i> Límite: {{ t.fecha_limite | date:'dd/MM/yyyy, hh:mm a' }}
+                      </small>
+                    </div>
+                    <button class="btn btn-sm btn-primary fw-bold px-3 rounded-pill shadow-xs" (click)="verEntregas(t)">
+                      Ver Entregas
+                    </button>
+                  </div>
+                </div>
+              } @empty {
+                <div class="text-center py-5 text-muted small">No hay tareas asignadas para este curso.</div>
+              }
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+        </div>
 
-    <div *ngIf="estudiantes.length === 0" class="alert alert-warning mt-3">
-      No hay estudiantes matriculados en esta aula.
+        <!-- Formulario para asignar nueva tarea -->
+        <div class="col-12 col-lg-5">
+          <div class="bg-white p-4 rounded-4 shadow-sm border h-100">
+            <h5 class="fw-bold text-dark mb-4 pb-2 border-bottom">Asignar Nueva Tarea</h5>
+            
+            <div class="mb-3">
+              <label class="form-label small fw-bold text-muted">Título de la Tarea</label>
+              <input type="text" class="form-control shadow-none" placeholder="Ej: Trabajo integrador final" [(ngModel)]="nuevaTarea.titulo">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-bold text-muted">Instrucciones y Rúbrica</label>
+              <textarea class="form-control shadow-none" rows="4" placeholder="Describa los criterios..." [(ngModel)]="nuevaTarea.descripcion"></textarea>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label small fw-bold text-muted">Fecha y Hora Límite de Entrega</label>
+              <input type="datetime-local" class="form-control shadow-none" [(ngModel)]="nuevaTarea.fecha_limite">
+            </div>
+
+            <button class="btn btn-primary w-100 fw-bold py-2 shadow-sm" (click)="crearTarea()" [disabled]="creandoTarea">
+              <span class="spinner-border spinner-border-sm me-1" *ngIf="creandoTarea"></span>
+              Asignar Tarea
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vista de entregas de la tarea seleccionada -->
+      <div class="bg-white p-4 rounded-4 shadow-sm border animate-fade-in" *ngIf="tareaSeleccionada">
+        <div class="d-flex align-items-center justify-content-between pb-3 border-bottom mb-4">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-sm btn-light border rounded-circle" style="width:36px;height:36px;" (click)="tareaSeleccionada=null">
+              <i class="bi bi-arrow-left"></i>
+            </button>
+            <div>
+              <h6 class="fw-bold text-dark mb-0">Entregas de: {{ tareaSeleccionada.titulo }}</h6>
+              <small class="text-muted">Revise los trabajos de los alumnos.</small>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="cargandoEntregas" class="text-center py-4">
+          <div class="spinner-border text-primary" role="status"></div>
+        </div>
+
+        <div class="table-responsive" *ngIf="!cargandoEntregas">
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th class="border-0 bg-light text-muted fw-bold px-3 py-2" style="font-size:0.85rem; border-radius: 8px 0 0 8px;">Alumno</th>
+                <th class="border-0 bg-light text-muted fw-bold py-2" style="font-size:0.85rem;">Fecha de Entrega</th>
+                <th class="border-0 bg-light text-muted fw-bold py-2" style="font-size:0.85rem;">Archivo</th>
+                <th class="border-0 bg-light text-muted fw-bold py-2" style="font-size:0.85rem;">Nota</th>
+                <th class="border-0 bg-light text-muted fw-bold py-2" style="font-size:0.85rem;">Estado</th>
+                <th class="border-0 bg-light text-muted fw-bold text-end px-3 py-2" style="font-size:0.85rem; border-radius: 0 8px 8px 0;">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ent of entregas">
+                <td class="px-3 fw-semibold text-dark">{{ ent.alumnos?.nombre }} {{ ent.alumnos?.apellido }}</td>
+                <td>{{ ent.fecha_entrega | date:'dd/MM/yyyy, hh:mm a' }}</td>
+                <td>
+                  <a [href]="ent.archivo_url" target="_blank" class="link-primary text-decoration-none small">
+                    <i class="bi bi-file-earmark-arrow-down-fill me-1"></i>{{ ent.archivo_nombre }}
+                  </a>
+                </td>
+                <td class="fw-bold text-primary font-monospace">{{ ent.nota !== null ? ent.nota : '—' }}</td>
+                <td>
+                  <span class="px-2 py-1 rounded text-uppercase" style="font-size:0.75rem; font-weight: 700;"
+                        [style.background]="ent.estado === 'Calificado' ? '#dcfce7' : '#fee2e2'"
+                        [style.color]="ent.estado === 'Calificado' ? '#15803d' : '#b91c1c'">
+                    {{ ent.estado }}
+                  </span>
+                </td>
+                <td class="text-end px-3">
+                  <button class="btn btn-sm btn-outline-primary px-3 rounded-pill fw-semibold shadow-xs"
+                          data-bs-toggle="modal" data-bs-target="#calificarModal" (click)="abrirCalificarEntrega(ent)">
+                    Calificar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-center py-5 text-muted small" *ngIf="entregas.length === 0">Ningún estudiante ha subido su entrega aún.</div>
+        </div>
+      </div>
     </div>
 
-    <div class="actions-footer mt-3" *ngIf="estudiantes.length > 0">
-      <button class="btn btn-success" (click)="guardarAsistencias()">
-        Guardar Asistencias
-      </button>
+    <!-- PESTAÑA D: CALIFICACIONES BIMESTRALES -->
+    <div *ngIf="tabActiva === 'notas'" class="animate-fade-in bg-white p-4 rounded-4 shadow-sm border">
+      <div class="d-flex justify-content-between align-items-center pb-3 border-bottom mb-4">
+        <div>
+          <h5 class="fw-bold text-dark mb-1">Registro de Calificaciones</h5>
+          <p class="text-muted small mb-0">Registre el rendimiento por cada Bimestre (1-4). El promedio se recalcula automáticamente.</p>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead>
+            <tr>
+              <th class="border-0 bg-light text-muted fw-bold px-3 py-2" style="font-size:0.85rem; border-radius: 8px 0 0 8px;">Estudiante</th>
+              <th class="border-0 bg-light text-muted fw-bold text-center py-2" style="font-size:0.85rem; width: 15%;">Bimestre 1</th>
+              <th class="border-0 bg-light text-muted fw-bold text-center py-2" style="font-size:0.85rem; width: 15%;">Bimestre 2</th>
+              <th class="border-0 bg-light text-muted fw-bold text-center py-2" style="font-size:0.85rem; width: 15%;">Bimestre 3</th>
+              <th class="border-0 bg-light text-muted fw-bold text-center py-2" style="font-size:0.85rem; width: 15%;">Bimestre 4</th>
+              <th class="border-0 bg-light text-muted fw-bold text-center py-2" style="font-size:0.85rem; border-radius: 0 8px 8px 0; width: 15%;">Promedio</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of notasAlumnos">
+              <td class="px-3 fw-semibold text-dark">{{ row.alumno_nombre }}</td>
+              <td>
+                <input type="number" min="0" max="20" class="form-control form-control-sm text-center shadow-xs rounded-2"
+                       [(ngModel)]="row.bimestre_1">
+              </td>
+              <td>
+                <input type="number" min="0" max="20" class="form-control form-control-sm text-center shadow-xs rounded-2"
+                       [(ngModel)]="row.bimestre_2">
+              </td>
+              <td>
+                <input type="number" min="0" max="20" class="form-control form-control-sm text-center shadow-xs rounded-2"
+                       [(ngModel)]="row.bimestre_3">
+              </td>
+              <td>
+                <input type="number" min="0" max="20" class="form-control form-control-sm text-center shadow-xs rounded-2"
+                       [(ngModel)]="row.bimestre_4">
+              </td>
+              <td class="text-center fw-bold text-primary font-monospace" style="font-size: 1.1rem;">
+                {{ calcularPromedio(row) }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 pt-3 border-top text-end" *ngIf="notasAlumnos.length > 0">
+        <button class="btn btn-primary px-4 fw-bold shadow-sm" (click)="guardarNotasBimestrales()" [disabled]="guardandoNotas">
+          <span class="spinner-border spinner-border-sm me-1" *ngIf="guardandoNotas"></span>
+          <i class="bi bi-cloud-arrow-up-fill me-1"></i> Guardar Calificaciones
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CALIFICAR ENTREGAS MODAL (Bootstrap Nativo) -->
+<div class="modal fade" id="calificarModal" tabindex="-1" aria-labelledby="calificarModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+      <div class="modal-header bg-primary text-white border-0" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
+        <h5 class="modal-title fw-bold" id="calificarModalLabel"><i class="bi bi-check2-square me-2"></i>Calificar Entrega</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div class="mb-3">
+          <label class="form-label small fw-bold text-muted">Nota Vigésima (0 - 20)</label>
+          <input type="number" class="form-control shadow-none" min="0" max="20" [(ngModel)]="calificacionEntrega.nota">
+        </div>
+        <div class="mb-0">
+          <label class="form-label small fw-bold text-muted">Comentario de Retroalimentación</label>
+          <textarea class="form-control shadow-none" rows="3" placeholder="Escriba aquí..." [(ngModel)]="calificacionEntrega.comentario"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer bg-light border-0" style="border-bottom-left-radius: 16px; border-bottom-right-radius: 16px;">
+        <button type="button" class="btn btn-outline-secondary px-4 rounded-pill fw-semibold" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary px-4 rounded-pill fw-bold shadow-sm" (click)="guardarCalificacion()" data-bs-dismiss="modal">Guardar Calificación</button>
+      </div>
     </div>
   </div>
 </div>

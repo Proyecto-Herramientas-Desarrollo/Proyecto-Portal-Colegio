@@ -1,7 +1,9 @@
 <div class="container-tramites">
   <div class="header-section">
     <h2 class="fw-bold text-dark">Solicitudes y Trámites</h2>
-    <p class="text-muted">Gestiona tus documentos académicos y constancias de manera rápida.</p>
+    <p class="text-muted">
+      <i class="bi bi-person-badge me-1"></i> {{ alumnoActual?.nombre }} {{ alumnoActual?.apellido }} — Gestiona tus documentos académicos.
+    </p>
   </div>
 
   <div class="card shadow-sm mb-4 border-0">
@@ -36,16 +38,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let t of misTramites">
-              <td class="fw-medium">{{ t.fecha }}</td>
-              <td>{{ t.tipo }}</td>
-              <td>
-                <span class="badge rounded-pill px-3 py-2"
-                      [ngClass]="{'bg-success': t.estado === 'Aprobado', 'bg-warning text-dark': t.estado === 'Pendiente'}">
-                  {{ t.estado }}
-                </span>
-              </td>
-            </tr>
+            @for (t of misTramites; track t.id) {
+              <tr>
+                <td class="fw-medium">{{ formatFecha(t.fecha) }}</td>
+                <td>{{ t.tipo }}</td>
+                <td>
+                  <span class="badge rounded-pill px-3 py-2"
+                        [ngClass]="{'bg-success': t.estado === 'Aprobado', 'bg-warning text-dark': t.estado === 'Pendiente', 'bg-danger': t.estado === 'Rechazado'}">
+                    {{ t.estado }}
+                  </span>
+                </td>
+              </tr>
+            }
           </tbody>
         </table>
       </div>

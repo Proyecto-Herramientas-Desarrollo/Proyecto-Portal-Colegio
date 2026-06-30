@@ -1,47 +1,56 @@
-<div class="container py-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <div>
-      <h3 class="fw-bold text-dark mb-1">Mis Cursos</h3>
-      <p class="text-muted mb-0">
-        <i class="bi bi-person-badge me-1"></i> Alumno: <span class="fw-semibold text-dark">{{ alumnoActual?.nombre }} {{ alumnoActual?.apellido }}</span> | 
-        <i class="bi bi-building me-1"></i> Grado: <span class="fw-semibold text-dark">{{ aulaActual?.grado }} "{{ aulaActual?.seccion }}"</span>
-      </p>
+<div class="container py-4 animate-fade-in">
+  
+  <!-- Vista de Lista de Cursos -->
+  <div *ngIf="!cursoSeleccionado">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h3 class="fw-bold text-dark mb-1">Mis Cursos</h3>
+        <p class="text-muted mb-0">
+          <i class="bi bi-person-badge me-1"></i> Alumno: <span class="fw-semibold text-dark">{{ alumnoActual?.nombre }} {{ alumnoActual?.apellido }}</span> | 
+          <i class="bi bi-building me-1"></i> Grado y Sección: <span class="fw-semibold text-dark">{{ aulaActual?.grado }} "{{ aulaActual?.seccion }}"</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      @for (curso of listaCursos; track curso.id) {
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm border-0 hover-card" style="border-radius: 15px;">
+            <div class="card-body p-4 d-flex flex-column justify-content-between">
+              <div>
+                <div class="d-flex align-items-center mb-3">
+                  <div class="bg-primary-subtle p-3 rounded-circle me-3">
+                    <i class="bi bi-journal-bookmark-fill text-primary fs-4"></i>
+                  </div>
+                  <h5 class="fw-bold mb-0 text-dark">{{ curso.nombre }}</h5>
+                </div>
+                
+                <div class="mb-4">
+                  <span class="badge bg-light text-dark border px-3 py-2 rounded-pill">
+                    <i class="bi bi-clock me-1 text-primary"></i> {{ curso.horas_semanales || 4 }} horas / semana
+                  </span>
+                </div>
+              </div>
+
+              <button class="btn btn-primary w-100 fw-semibold py-2" style="border-radius: 10px;" (click)="abrirDetalle(curso)">
+                Ingresar a curso <i class="bi bi-arrow-right-short ms-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <div class="col-12 text-center py-5 text-muted">
+          No se encontraron cursos asignados a tu aula.
+        </div>
+      }
     </div>
   </div>
 
-  <div class="row g-4">
-    @for (curso of listaCursos; track curso.id) {
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm border-0 hover-card" style="border-radius: 15px;">
-          <div class="card-body p-4">
-            
-            <div class="d-flex align-items-center mb-3">
-              <div class="bg-primary-subtle p-3 rounded-circle me-3">
-                <i class="bi bi-journal-bookmark-fill text-primary fs-4"></i>
-              </div>
-              <h5 class="fw-bold mb-0 text-dark">{{ curso.nombre }}</h5>
-            </div>
-            
-            <div class="mb-3">
-              <span class="badge bg-secondary bg-opacity-25 text-dark px-3 py-2 rounded-pill">
-                <i class="bi bi-clock me-1"></i> {{ curso.horasSemanales }} horas / semana
-              </span>
-            </div>
-
-            <button class="btn btn-outline-primary w-100 fw-semibold" style="border-radius: 10px;" (click)="abrirDetalle(curso)">
-              Ver Detalles
-            </button>
-            
-          </div>
-        </div>
-      </div>
-    }
+  <!-- Vista Detalle de Curso (Subapartado) -->
+  <div *ngIf="cursoSeleccionado">
+    <app-detalle-curso 
+      [curso]="cursoSeleccionado" 
+      (cerrar)="cerrarDetalle()">
+    </app-detalle-curso>
   </div>
 </div>
-
-@if (cursoSeleccionado) {
-  <app-detalle-curso 
-    [curso]="cursoSeleccionado" 
-    (cerrar)="cerrarDetalle()">
-  </app-detalle-curso>
-}

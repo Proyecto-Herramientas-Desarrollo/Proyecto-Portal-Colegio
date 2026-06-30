@@ -1,59 +1,105 @@
 <p class="d-none">dashboard works!</p>
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-2 shadow-sm">
-  <div class="container-fluid d-flex align-items-center">
 
-    <div style="width: 250px;">
-      <a class="navbar-brand d-flex align-items-center" href="#" (click)="cambiarSeccion(usuarioRol === 'alumno' ? 'cursos' : 'aulas'); $event.preventDefault()">
-        <img src="assets/logo-san-alfonso.png" alt="San Alfonso" height="40">
-      </a>
-    </div>
+<!-- NAVBAR RESPONSIVA CON HAMBURGUESA -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm" style="z-index: 1030;">
+  <div class="container-fluid px-3 px-lg-4">
 
-    <div class="flex-grow-1">
-      <ul class="navbar-nav justify-content-center gap-4">
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#"
+       (click)="cambiarSeccion(usuarioRol === 'alumno' ? 'cursos' : 'aulas'); $event.preventDefault()">
+      <img src="/logo.png" alt="San Alfonso" height="38" style="object-fit: contain;">
+    </a>
+
+    <!-- HAMBURGUESA (visible en móvil) -->
+    <button class="navbar-toggler border-0 shadow-none" type="button"
+            (click)="menuAbierto = !menuAbierto"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- MENÚ COLAPSABLE -->
+    <div class="navbar-collapse" [class.show]="menuAbierto" [class.collapse]="!menuAbierto">
+      <ul class="navbar-nav mx-auto gap-1 gap-lg-3 py-2 py-lg-0">
+
         @if (usuarioRol === 'alumno') {
           <li class="nav-item">
-            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'cursos'" (click)="cambiarSeccion('cursos')" style="cursor: pointer;">Cursos</a>
+            <a class="nav-link fw-semibold animate-tab px-2"
+               [class.active]="seccionActiva === 'cursos'"
+               (click)="cambiarSeccion('cursos'); menuAbierto=false" style="cursor:pointer;">Cursos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'horarios'" (click)="cambiarSeccion('horarios')" style="cursor: pointer;">Horarios</a>
+            <a class="nav-link fw-semibold animate-tab px-2"
+               [class.active]="seccionActiva === 'horarios'"
+               (click)="cambiarSeccion('horarios'); menuAbierto=false" style="cursor:pointer;">Horarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'mensajes'" (click)="cambiarSeccion('mensajes')" style="cursor: pointer;">Mensajes</a>
+            <a class="nav-link fw-semibold animate-tab px-2"
+               [class.active]="seccionActiva === 'mensajes'"
+               (click)="cambiarSeccion('mensajes'); menuAbierto=false" style="cursor:pointer;">Mensajes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'notificaciones'" (click)="cambiarSeccion('notificaciones')" style="cursor: pointer;">Notificaciones</a>
+            <a class="nav-link fw-semibold animate-tab px-2"
+               [class.active]="seccionActiva === 'notificaciones'"
+               (click)="cambiarSeccion('notificaciones'); menuAbierto=false" style="cursor:pointer;">Notificaciones</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'finanzas'" (click)="cambiarSeccion('finanzas')" style="cursor: pointer;">Finanzas</a>
+            <a class="nav-link fw-semibold animate-tab px-2"
+               [class.active]="seccionActiva === 'finanzas'"
+               (click)="cambiarSeccion('finanzas'); menuAbierto=false" style="cursor:pointer;">Finanzas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'historial'" (click)="cambiarSeccion('historial')" style="cursor: pointer;">Historial Académico</a>
+            <a class="nav-link fw-semibold animate-tab px-2"
+               [class.active]="seccionActiva === 'historial'"
+               (click)="cambiarSeccion('historial'); menuAbierto=false" style="cursor:pointer;">Historial Académico</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'tramites'" (click)="cambiarSeccion('tramites')" style="cursor: pointer;">Trámites</a>
+            <a class="nav-link fw-semibold animate-tab px-2"
+               [class.active]="seccionActiva === 'tramites'"
+               (click)="cambiarSeccion('tramites'); menuAbierto=false" style="cursor:pointer;">Trámites</a>
           </li>
         } @else if (usuarioRol === 'docente') {
           <li class="nav-item">
-            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'aulas'" (click)="cambiarSeccion('aulas')" style="cursor: pointer;">Mis Aulas</a>
+            <a class="nav-link fw-semibold animate-tab px-2"
+               [class.active]="seccionActiva === 'aulas'"
+               (click)="cambiarSeccion('aulas'); menuAbierto=false" style="cursor:pointer;">Mis Aulas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'mensajes'" (click)="cambiarSeccion('mensajes')" style="cursor: pointer;">Mensajes</a>
+            <a class="nav-link fw-semibold animate-tab px-2"
+               [class.active]="seccionActiva === 'mensajes'"
+               (click)="cambiarSeccion('mensajes'); menuAbierto=false" style="cursor:pointer;">Mensajes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fw-semibold animate-tab" [class.active]="seccionActiva === 'notificaciones'" (click)="cambiarSeccion('notificaciones')" style="cursor: pointer;">Notificaciones</a>
+            <a class="nav-link fw-semibold animate-tab px-2"
+               [class.active]="seccionActiva === 'notificaciones'"
+               (click)="cambiarSeccion('notificaciones'); menuAbierto=false" style="cursor:pointer;">Notificaciones</a>
           </li>
         }
+
       </ul>
+
+      <!-- Perfil (visible en móvil dentro del menú) -->
+      <div class="d-flex d-lg-none flex-column gap-2 border-top pt-2 mt-2 w-100">
+        <button class="btn btn-light border text-dark w-100 fw-semibold text-start px-3 py-2"
+                (click)="cambiarSeccion('perfil'); menuAbierto=false" style="border-radius: 8px;">
+          <i class="bi bi-person-circle text-primary me-2"></i>Mi Perfil
+        </button>
+        <button class="btn btn-light border text-danger w-100 fw-semibold text-start px-3 py-2"
+                (click)="cerrarSesion(); menuAbierto=false" style="border-radius: 8px;">
+          <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
+        </button>
+      </div>
     </div>
 
-    <div class="d-flex justify-content-end" style="width: 250px;">
+    <!-- Perfil Mini (solo desktop) -->
+    <div class="d-none d-lg-flex">
       <app-perfil-mini (verPerfil)="cambiarSeccion('perfil')"></app-perfil-mini>
     </div>
 
   </div>
 </nav>
 
-<div class="container mt-4">
+<!-- CONTENIDO PRINCIPAL -->
+<div class="container-fluid container-lg mt-3 mt-lg-4 px-2 px-lg-3">
   <main class="seccion-animada">
     @if (seccionActiva === 'cursos') {
       <app-cursos></app-cursos>

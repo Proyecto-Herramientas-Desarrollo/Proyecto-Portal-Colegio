@@ -1,9 +1,12 @@
-<div class="container py-4 animate-fade-in" style="max-width: 1100px;">
+<div class="container-fluid py-3 py-lg-4 animate-fade-in" style="max-width:1100px;">
   <div class="card shadow-sm border-0 chat-container">
     <div class="row g-0 h-100">
 
-      <div class="col-md-4 border-end bg-white h-100 d-flex flex-column">
-        
+      <!-- COLUMNA IZQUIERDA: Lista de contactos -->
+      <div class="col-12 col-md-4 border-end bg-white d-flex flex-column"
+           [class.d-none]="mostrarChat && isMobile"
+           [class.d-flex]="!mostrarChat || !isMobile">
+
         <div class="p-3 border-bottom bg-light">
           <h5 class="fw-bold mb-0 text-dark">
             <i class="bi bi-chat-dots-fill text-primary me-2"></i>Mensajes
@@ -13,87 +16,121 @@
         <div class="p-3 border-bottom">
           <div class="input-group">
             <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
-            <input type="text" class="form-control bg-light border-start-0 shadow-none" placeholder="Buscar conversación...">
+            <input type="text" class="form-control bg-light border-start-0 shadow-none"
+                   placeholder="Buscar conversación..." [(ngModel)]="busqueda">
           </div>
         </div>
 
         <div class="contact-list flex-grow-1 overflow-auto">
-          @for (contacto of contactos; track contacto.id) {
+          @for (contacto of contactosFiltrados; track contacto.id) {
             <div class="contact-item p-3 border-bottom d-flex align-items-center"
                  [ngClass]="{'active-chat': contacto.activo}"
                  (click)="seleccionarContacto(contacto)">
 
-              <div class="avatar rounded-circle bg-primary text-white d-flex justify-content-center align-items-center fw-bold me-3 shadow-sm">
+              <div class="avatar rounded-circle bg-primary text-white d-flex justify-content-center
+                          align-items-center fw-bold me-3 shadow-sm" style="width:44px;height:44px;flex-shrink:0;">
                 {{ contacto.iniciales }}
               </div>
 
               <div class="flex-grow-1 overflow-hidden">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                   <h6 class="fw-bold mb-0 text-dark text-truncate">{{ contacto.nombre }}</h6>
-                  
                   @if (contacto.unread > 0) {
-                    <span class="badge bg-danger rounded-pill">{{ contacto.unread }}</span>
+                    <span class="badge bg-danger rounded-pill ms-1">{{ contacto.unread }}</span>
                   }
                 </div>
                 <small class="text-muted d-block text-truncate">{{ contacto.rol }}</small>
               </div>
             </div>
+          } @empty {
+            <div class="p-4 text-center text-muted small">No se encontraron contactos.</div>
           }
         </div>
       </div>
 
-      <div class="col-md-8 h-100 d-flex flex-column bg-light-gray">
+      <!-- COLUMNA DERECHA: Chat activo -->
+      <div class="col-12 col-md-8 h-100 d-flex flex-column bg-light-gray"
+           [class.d-none]="!mostrarChat && isMobile"
+           [class.d-flex]="mostrarChat || !isMobile">
+
         @if (contactoSeleccionado) {
-          
-          <div class="p-3 border-bottom bg-white d-flex align-items-center justify-content-between shadow-sm z-1">
-            <div class="d-flex align-items-center">
-              <div class="avatar-sm rounded-circle bg-primary text-white d-flex justify-content-center align-items-center fw-bold me-3">
+
+          <!-- Header del Chat -->
+          <div class="p-3 border-bottom bg-white d-flex align-items-center justify-content-between shadow-sm">
+            <div class="d-flex align-items-center gap-2">
+              <!-- Botón volver (solo móvil) -->
+              <button class="btn btn-sm btn-light border me-1 d-md-none"
+                      (click)="mostrarChat=false" title="Volver">
+                <i class="bi bi-arrow-left"></i>
+              </button>
+              <div class="avatar-sm rounded-circle bg-primary text-white d-flex justify-content-center
+                          align-items-center fw-bold" style="width:38px;height:38px;flex-shrink:0;">
                 {{ contactoSeleccionado.iniciales }}
               </div>
               <div>
                 <h6 class="fw-bold mb-0 text-dark">{{ contactoSeleccionado.nombre }}</h6>
-                <small class="text-success fw-medium">
-                  <i class="bi bi-circle-fill me-1" style="font-size: 8px;"></i>En línea
-                </small>
+                <small class="text-muted">{{ contactoSeleccionado.rol }}</small>
               </div>
             </div>
-            <button class="btn btn-light text-muted border shadow-sm"><i class="bi bi-three-dots-vertical"></i></button>
+            <div class="d-flex align-items-center gap-2">
+              <span class="d-flex align-items-center gap-1" style="font-size:0.75rem;">
+                <i class="bi bi-circle-fill text-success" style="font-size:8px;"></i>
+                <span class="text-muted">En línea</span>
+              </span>
+              <button class="btn btn-light text-muted border shadow-sm btn-sm">
+                <i class="bi bi-three-dots-vertical"></i>
+              </button>
+            </div>
           </div>
 
-          <div class="chat-history p-4 flex-grow-1 overflow-auto" id="chat-history">
+          <!-- Historial de mensajes -->
+          <div class="chat-history p-3 p-md-4 flex-grow-1 overflow-auto" id="chat-history">
             @for (msg of mensajesChat; track msg.id) {
-              <div class="d-flex mb-3" [ngClass]="{'justify-content-end': msg.tipo === 'out', 'justify-content-start': msg.tipo === 'in'}">
-                
+              <div class="d-flex mb-3"
+                   [ngClass]="{'justify-content-end': msg.tipo === 'out', 'justify-content-start': msg.tipo === 'in'}">
+
                 <div class="message-bubble p-3 shadow-sm"
-                     [ngClass]="{'bg-primary text-white rounded-out': msg.tipo === 'out', 'bg-white text-dark rounded-in border': msg.tipo === 'in'}">
-                  
-                  <p class="mb-1" style="line-height: 1.5;">{{ msg.texto }}</p>
-                  
-                  <small class="d-block text-end opacity-75" style="font-size: 0.75rem;">
+                     [ngClass]="{'bg-primary text-white rounded-out': msg.tipo === 'out',
+                                 'bg-white text-dark rounded-in border': msg.tipo === 'in'}"
+                     style="max-width:78%;">
+                  <p class="mb-1" style="line-height:1.5;word-break:break-word;">{{ msg.texto }}</p>
+                  <small class="d-block text-end opacity-75" style="font-size:0.72rem;">
                     {{ msg.hora }}
                     @if (msg.tipo === 'out') {
                       <i class="bi bi-check2-all ms-1 text-info"></i>
                     }
                   </small>
                 </div>
+
               </div>
             }
           </div>
 
+          <!-- Input de mensaje -->
           <div class="p-3 bg-white border-top">
             <div class="input-group">
-              <button class="btn btn-light border text-muted" title="Adjuntar archivo"><i class="bi bi-paperclip"></i></button>
-              
-              <input type="text" class="form-control shadow-none" placeholder="Escribe un mensaje aquí..."
+              <button class="btn btn-light border text-muted" title="Adjuntar">
+                <i class="bi bi-paperclip"></i>
+              </button>
+              <input type="text" class="form-control shadow-none"
+                     placeholder="Escribe un mensaje aquí..."
                      [(ngModel)]="nuevoMensaje"
                      (keyup.enter)="enviarMensaje()">
-                     
-              <button class="btn btn-primary fw-bold" (click)="enviarMensaje()">
-                <i class="bi bi-send-fill me-1"></i> Enviar
+              <button class="btn btn-primary fw-bold px-3" (click)="enviarMensaje()">
+                <i class="bi bi-send-fill me-1"></i>
+                <span class="d-none d-sm-inline">Enviar</span>
               </button>
             </div>
           </div>
+
+        } @else {
+          <!-- Estado vacío -->
+          <div class="flex-grow-1 d-flex flex-column align-items-center justify-content-center text-muted py-5">
+            <i class="bi bi-chat-dots" style="font-size:3.5rem; opacity:0.3;"></i>
+            <p class="mt-3 mb-0 fw-semibold">Selecciona un contacto para comenzar</p>
+          </div>
         }
+
       </div>
 
     </div>

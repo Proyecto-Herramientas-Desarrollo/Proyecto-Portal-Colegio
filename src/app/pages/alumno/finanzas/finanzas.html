@@ -7,29 +7,33 @@
   </div>
 
   <div class="row g-4 mb-4">
+    <!-- Total Pendiente -->
     <div class="col-md-6">
-      <div class="card bg-danger bg-opacity-10 border-0 shadow-sm h-100" style="border-radius: 15px;">
-        <div class="card-body p-4 d-flex align-items-center">
-          <div class="bg-danger text-white p-3 rounded-circle me-4">
-            <i class="bi bi-exclamation-triangle-fill fs-3"></i>
+      <div class="card border-0 shadow-sm h-100" style="border-radius:16px; background: linear-gradient(135deg,#fff5f5 0%,#fee2e2 100%);">
+        <div class="card-body p-4 d-flex align-items-center gap-4">
+          <div class="d-flex align-items-center justify-content-center rounded-3 shadow"
+               style="width:60px;height:60px;background:linear-gradient(135deg,#ef4444,#dc2626);flex-shrink:0;">
+            <i class="bi bi-credit-card-2-front-fill text-white" style="font-size:1.6rem;"></i>
           </div>
           <div>
-            <h6 class="text-danger fw-bold mb-1">Total Pendiente a Pagar</h6>
-            <h3 class="fw-bold text-dark mb-0">S/ {{ totalPendiente }}.00</h3>
+            <p class="text-danger fw-bold mb-1 small text-uppercase" style="letter-spacing:.05em;">Total Pendiente</p>
+            <h2 class="fw-bold text-dark mb-0" style="font-size:1.9rem;">S/ {{ totalPendiente }}.00</h2>
           </div>
         </div>
       </div>
     </div>
-    
+
+    <!-- Estado Matrícula -->
     <div class="col-md-6">
-      <div class="card bg-success bg-opacity-10 border-0 shadow-sm h-100" style="border-radius: 15px;">
-        <div class="card-body p-4 d-flex align-items-center">
-          <div class="bg-success text-white p-3 rounded-circle me-4">
-            <i class="bi bi-check-circle-fill fs-3"></i>
+      <div class="card border-0 shadow-sm h-100" style="border-radius:16px; background: linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);">
+        <div class="card-body p-4 d-flex align-items-center gap-4">
+          <div class="d-flex align-items-center justify-content-center rounded-3 shadow"
+               style="width:60px;height:60px;background:linear-gradient(135deg,#22c55e,#16a34a);flex-shrink:0;">
+            <i class="bi bi-patch-check-fill text-white" style="font-size:1.6rem;"></i>
           </div>
           <div>
-            <h6 class="text-success fw-bold mb-1">Estado de Matrícula</h6>
-            <h3 class="fw-bold text-dark mb-0">Activo</h3>
+            <p class="text-success fw-bold mb-1 small text-uppercase" style="letter-spacing:.05em;">Estado de Matrícula</p>
+            <h2 class="fw-bold text-dark mb-0" style="font-size:1.9rem;">Activo</h2>
           </div>
         </div>
       </div>
@@ -39,6 +43,7 @@
   <div class="card border-0 shadow-sm" style="border-radius: 15px;">
     <div class="card-body p-4">
       <h5 class="fw-bold mb-4">Historial de Pensiones</h5>
+      
       <div class="table-responsive">
         <table class="table table-hover align-middle mb-0">
           <thead class="table-light">
@@ -46,37 +51,233 @@
               <th class="py-3">Concepto</th>
               <th class="py-3">Vencimiento</th>
               <th class="py-3">Monto</th>
-              <th class="py-3">Estado</th>
-              <th class="py-3">Acción</th>
+              <th class="py-3 text-center">Estado</th>
+              <th class="py-3 text-center">Acción</th>
             </tr>
           </thead>
           <tbody>
-            @for (pago of pensiones; track pago.concepto) {
+            @for (pago of pensiones; track pago.id) {
               <tr>
                 <td class="fw-semibold py-3">{{ pago.concepto }}</td>
-                <td class="text-muted py-3">{{ pago.vencimiento }}</td>
+                <td class="text-muted py-3">{{ formatFecha(pago.vencimiento) }}</td>
                 <td class="fw-bold py-3">S/ {{ pago.monto }}.00</td>
-                <td class="py-3">
-                  <span class="badge px-3 py-2" 
-                    [ngClass]="{
-                      'bg-success bg-opacity-25 text-success border border-success-subtle': pago.estado === 'Pagado',
-                      'bg-danger bg-opacity-25 text-danger border border-danger-subtle': pago.estado === 'Pendiente',
-                      'bg-warning bg-opacity-25 text-warning-emphasis border border-warning-subtle': pago.estado === 'Por Vencer'
-                    }">
+                <td class="py-3 text-center">
+                  <span class="d-inline-block px-3 py-1 rounded-pill fw-semibold border"
+                    [style.background]="pago.estado === 'Pagado' ? '#dcfce7' : (pago.estado === 'Pendiente' ? '#fee2e2' : '#fef9c3')"
+                    [style.color]="pago.estado === 'Pagado' ? '#15803d' : (pago.estado === 'Pendiente' ? '#dc2626' : '#854d0e')"
+                    [style.border-color]="pago.estado === 'Pagado' ? '#86efac' : (pago.estado === 'Pendiente' ? '#fca5a5' : '#fde047')"
+                    style="font-size:0.82rem;">
                     {{ pago.estado }}
                   </span>
                 </td>
-                <td class="py-3">
+                <td class="py-3 text-center">
                   @if (pago.estado !== 'Pagado') {
-                    <button class="btn btn-sm btn-primary fw-semibold px-3" style="border-radius: 8px;">Pagar</button>
+                    <button (click)="abrirModalPago(pago)" class="btn btn-sm btn-primary fw-semibold px-4 shadow-sm" style="border-radius: 8px;">
+                      Pagar
+                    </button>
                   } @else {
-                    <button class="btn btn-sm btn-outline-secondary fw-semibold px-3" style="border-radius: 8px;" disabled>Recibo</button>
+                    <button (click)="abrirModalRecibo(pago)" class="btn btn-sm btn-outline-primary fw-semibold px-4 shadow-sm" style="border-radius: 8px;">
+                      <i class="bi bi-file-earmark-pdf me-1"></i> Recibo
+                    </button>
                   }
                 </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="5" class="text-center py-4 text-muted">No se encontraron registros financieros.</td>
               </tr>
             }
           </tbody>
         </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE PAGO -->
+  <div class="modal-backdrop fade show" *ngIf="mostrarModalPago"></div>
+  <div class="modal fade show d-block" tabindex="-1" *ngIf="mostrarModalPago" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+        <div class="modal-header bg-primary text-white border-0" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
+          <h5 class="modal-title fw-bold"><i class="bi bi-wallet2 me-2"></i>Realizar Pago</h5>
+          <button type="button" class="btn-close btn-close-white" (click)="cerrarModalPago()"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="mb-3 p-3 bg-light rounded-3">
+            <h6 class="fw-bold text-dark mb-1">Detalle del Concepto:</h6>
+            <div class="d-flex justify-content-between">
+              <span class="text-muted">{{ pagoSeleccionado?.concepto }}</span>
+              <span class="fw-bold text-primary">S/ {{ pagoSeleccionado?.monto }}.00</span>
+            </div>
+          </div>
+
+          <h6 class="fw-bold text-dark mb-3"><i class="bi bi-bank me-2 text-primary"></i>Cuentas Bancarias de Depósito</h6>
+          <div class="bank-accounts mb-4">
+            <div class="p-3 border rounded-3 mb-2 bg-white shadow-xs">
+              <div class="d-flex align-items-center justify-content-between mb-1">
+                <span class="fw-bold text-secondary">Banco BCP</span>
+                <span class="badge bg-primary bg-opacity-10 text-primary">Corriente</span>
+              </div>
+              <p class="mb-0 small text-muted">N° Cuenta: <strong class="text-dark">191-48293021-0-45</strong></p>
+              <p class="mb-0 small text-muted">CCI: <strong class="text-dark">002-1914829302104592</strong></p>
+            </div>
+
+            <div class="p-3 border rounded-3 mb-2 bg-white shadow-xs">
+              <div class="d-flex align-items-center justify-content-between mb-1">
+                <span class="fw-bold text-secondary">Banco BBVA</span>
+                <span class="badge bg-primary bg-opacity-10 text-primary">Ahorros</span>
+              </div>
+              <p class="mb-0 small text-muted">N° Cuenta: <strong class="text-dark">0011-0348-0200392817</strong></p>
+              <p class="mb-0 small text-muted">CCI: <strong class="text-dark">011-3480020039281782</strong></p>
+            </div>
+
+            <div class="p-3 border rounded-3 bg-white shadow-xs">
+              <div class="d-flex align-items-center justify-content-between mb-1">
+                <span class="fw-bold text-secondary">Yape / Plin</span>
+                <span class="badge bg-success bg-opacity-10 text-success">Móvil</span>
+              </div>
+              <p class="mb-0 small text-muted">Celular: <strong class="text-dark">987 654 321</strong></p>
+              <p class="mb-0 small text-muted">Titular: <strong class="text-dark">Colegio San Alfonso S.A.C</strong></p>
+            </div>
+          </div>
+
+          <!-- Subida de Comprobante -->
+          <div class="mb-3">
+            <label class="form-label fw-bold text-dark"><i class="bi bi-cloud-arrow-up me-2 text-primary"></i>Adjuntar Comprobante de Pago</label>
+            <div class="file-upload-wrapper border border-dashed rounded-3 p-3 text-center bg-light">
+              <i class="bi bi-file-earmark-image fs-1 text-muted d-block mb-2"></i>
+              <span class="small text-muted d-block mb-2">Sube una foto del voucher (JPG/PNG) o archivo PDF</span>
+              <input type="file" id="fileComprobante" class="d-none" (change)="onFileSelected($event)" accept="image/*,application/pdf">
+              <label for="fileComprobante" class="btn btn-sm btn-outline-primary px-3 rounded-pill">Seleccionar Archivo</label>
+              <div class="mt-2 text-primary fw-semibold small text-truncate" *ngIf="comprobanteNombre">
+                <i class="bi bi-check-circle-fill me-1 text-success"></i>{{ comprobanteNombre }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Alerta de éxito -->
+          <div class="alert alert-success border-0 shadow-sm d-flex align-items-center mb-0 mt-3 animate-fade-in" role="alert" *ngIf="alertaExitoPago">
+            <i class="bi bi-check-circle-fill me-2 fs-5"></i>
+            <div>¡Comprobante enviado con éxito! El pago ha sido registrado.</div>
+          </div>
+        </div>
+        <div class="modal-footer border-0 bg-light p-3" style="border-bottom-left-radius: 16px; border-bottom-right-radius: 16px;">
+          <button type="button" class="btn btn-outline-secondary px-4 fw-semibold" (click)="cerrarModalPago()" [disabled]="subiendoComprobante">
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-primary px-4 fw-semibold" (click)="enviarComprobante()" [disabled]="!comprobanteNombre || subiendoComprobante">
+            <span class="spinner-border spinner-border-sm me-1" role="status" *ngIf="subiendoComprobante"></span>
+            Enviar Comprobante
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE RECIBO / PDF -->
+  <div class="modal-backdrop fade show" *ngIf="mostrarModalRecibo"></div>
+  <div class="modal fade show d-block" tabindex="-1" *ngIf="mostrarModalRecibo" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+        <div class="modal-header bg-dark text-white border-0" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
+          <h5 class="modal-title fw-bold"><i class="bi bi-file-earmark-pdf me-2"></i>Recibo de Pago Digital</h5>
+          <button type="button" class="btn-close btn-close-white" (click)="cerrarModalRecibo()"></button>
+        </div>
+        <div class="modal-body p-5 bg-white position-relative" id="reciboPrintable">
+          <!-- Marca de agua de colegio -->
+          <div class="position-absolute top-50 start-50 translate-middle text-dark" style="z-index: 0; font-size: 5.5rem; opacity: 0.04; pointer-events: none; user-select: none; white-space: nowrap; font-weight: 850;">
+            SAN ALFONSO
+          </div>
+
+          <div style="position: relative; z-index: 1;">
+            <!-- Header Recibo -->
+            <div class="d-flex justify-content-between align-items-start border-bottom pb-4 mb-4">
+              <div>
+                <h4 class="fw-bold text-dark mb-1">COLEGIO SAN ALFONSO</h4>
+                <p class="mb-0 text-muted small">RUC: 20498725182</p>
+                <p class="mb-0 text-muted small">Av. Metropolitana 123, Lima, Perú</p>
+                <p class="mb-0 text-muted small">Contacto: info@sanalfonso.edu.pe</p>
+              </div>
+              <div class="text-end">
+                <div class="p-3 border rounded-3 bg-light text-center" style="min-width: 220px;">
+                  <h6 class="fw-bold text-primary mb-1">RECIBO DE INGRESO</h6>
+                  <h5 class="fw-bold text-dark mb-0">N° 002-000{{ 1852 + (pagoSeleccionado?.id || 1) }}</h5>
+                  <p class="mb-0 text-muted small mt-1">Fecha Emisión: {{ formatFecha(pagoSeleccionado?.vencimiento) }}</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Datos del Cliente -->
+            <div class="row mb-4">
+              <div class="col-6">
+                <h6 class="fw-bold text-secondary text-uppercase small mb-2">Recibido de:</h6>
+                <h5 class="fw-bold text-dark mb-1">{{ alumnoActual?.nombre }} {{ alumnoActual?.apellido }}</h5>
+                <p class="mb-0 text-muted small">DNI: {{ alumnoActual?.dni }}</p>
+                <p class="mb-0 text-muted small">Rol: Alumno</p>
+              </div>
+              <div class="col-6 text-end">
+                <h6 class="fw-bold text-secondary text-uppercase small mb-2">Método de Pago:</h6>
+                <h5 class="fw-bold text-dark mb-1">Transferencia Directa</h5>
+                <p class="mb-0 text-muted small">Estado de Pago: <span class="badge bg-success text-white">CONCILIADO</span></p>
+              </div>
+            </div>
+
+            <!-- Tabla de Concepto -->
+            <div class="table-responsive mb-4">
+              <table class="table table-bordered">
+                <thead class="table-light">
+                  <tr>
+                    <th class="py-2">Descripción</th>
+                    <th class="py-2 text-end" style="width: 150px;">Monto Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="py-3">
+                      <strong class="text-dark">{{ pagoSeleccionado?.concepto }}</strong>
+                      <p class="mb-0 text-muted small">Pago correspondiente al año escolar 2026.</p>
+                    </td>
+                    <td class="py-3 text-end fw-bold text-dark">S/ {{ pagoSeleccionado?.monto }}.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Total y Letras -->
+            <div class="row align-items-center mt-5">
+              <div class="col-8">
+                <p class="mb-1 text-muted small">Importe en letras:</p>
+                <p class="fw-bold text-dark small text-uppercase">
+                  {{ pagoSeleccionado?.monto === 350 ? 'Trescientos cincuenta y 00/100 Soles' : 'Cuatrocientos cincuenta y 00/100 Soles' }}
+                </p>
+                <!-- Código de Barras o QR simulado -->
+                <div class="mt-4 d-flex align-items-center gap-3">
+                  <div class="border p-1 bg-light rounded" style="width: 60px; height: 60px; display: flex; justify-content: center; align-items: center;">
+                    <i class="bi bi-qr-code fs-1 text-dark"></i>
+                  </div>
+                  <div>
+                    <span class="small text-muted d-block">Comprobante validado electrónicamente.</span>
+                    <span class="small text-muted d-block font-monospace" style="font-size: 10px;">Hash: a7b8c9d0e1f2g3h4</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-4 text-end">
+                <div class="border-top pt-2">
+                  <span class="text-muted small">Total Cancelado</span>
+                  <h3 class="fw-bold text-primary mt-1 mb-0">S/ {{ pagoSeleccionado?.monto }}.00</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-0 bg-light p-3" style="border-bottom-left-radius: 16px; border-bottom-right-radius: 16px;">
+          <button type="button" class="btn btn-outline-secondary px-4 fw-semibold" (click)="cerrarModalRecibo()">
+            Cerrar
+          </button>
+          <button type="button" class="btn btn-primary px-4 fw-semibold" (click)="imprimirRecibo()">
+            <i class="bi bi-printer me-1"></i> Imprimir / Guardar PDF
+          </button>
+        </div>
       </div>
     </div>
   </div>

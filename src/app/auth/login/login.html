@@ -1,15 +1,17 @@
 <div class="login-container d-flex align-items-center justify-content-center vh-100">
   <div class="card shadow-lg p-4 login-card" style="width: 25rem; border-radius: 15px;">
     <div class="text-center mb-4">
+      <img src="/logo.png" alt="Logo San Alfonso" height="70" class="mb-3" style="object-fit: contain;">
       <h3 class="fw-bold text-primary">Colegio San Alfonso</h3>
       <p class="text-muted">Portal Académico</p>
     </div>
 
     <form (submit)="ingresar(); $event.preventDefault()">
-      
+
       @if (mensajeError) {
-        <div class="alert alert-danger py-2 text-center" role="alert">
-          {{ mensajeError }}
+        <div class="alert alert-danger d-flex align-items-center gap-2 py-2" role="alert">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <span>{{ mensajeError }}</span>
         </div>
       }
 
@@ -46,14 +48,6 @@
 
     <div class="mt-4 text-center">
       <small><a href="#" class="text-decoration-none">¿Olvidaste tu contraseña?</a></small>
-    </div>
-
-    <div class="mt-3 text-center border-top pt-3 text-muted">
-      <p class="mb-1 fw-semibold" style="font-size: 0.75rem;"><i class="bi bi-info-circle me-1"></i> Credenciales de prueba (Clave: 1234)</p>
-      <div class="d-flex justify-content-center gap-3" style="font-size: 0.7rem;">
-        <span><i class="bi bi-person-fill"></i> Alumno: <strong>70123458</strong></span>
-        <span><i class="bi bi-briefcase-fill"></i> Docente: <strong>10293847</strong></span>
-      </div>
     </div>
   </div>
 </div>

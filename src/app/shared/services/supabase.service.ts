@@ -110,6 +110,13 @@ export class SupabaseService {
       .eq('alumno_id', alumnoId);
   }
 
+  async getCursos() {
+    return this.supabase
+      .from('cursos')
+      .select('*')
+      .order('id');
+  }
+
   // =====================================================
   // HORARIOS
   // =====================================================
@@ -162,6 +169,13 @@ export class SupabaseService {
       .order('vencimiento');
   }
 
+  async updateFinanzasEstado(id: number, estado: string) {
+    return this.supabase
+      .from('finanzas')
+      .update({ estado })
+      .eq('id', id);
+  }
+
   // =====================================================
   // MATERIALES DE CLASE
   // =====================================================
@@ -197,6 +211,58 @@ export class SupabaseService {
       .select('*, tareas_entregadas(id, alumno_id, nota, estado)')
       .eq('curso_id', cursoId)
       .order('fecha_limite');
+  }
+
+  async getEntregasByTarea(tareaId: number) {
+    return this.supabase
+      .from('tareas_entregadas')
+      .select('*, alumnos(nombre, apellido)')
+      .eq('tarea_id', tareaId)
+      .order('fecha_entrega');
+  }
+
+  async calificarEntrega(entregaId: number, nota: number, comentario: string) {
+    return this.supabase
+      .from('tareas_entregadas')
+      .update({ nota, comentario, estado: 'Calificado' })
+      .eq('id', entregaId);
+  }
+
+  async getNotasByCursoYAula(cursoId: number, aulaId: number) {
+    // Primero, obtenemos los IDs de alumnos de esa aula
+    const { data: alumnos } = await this.supabase
+      .from('alumnos')
+      .select('id, nombre, apellido')
+      .eq('aula_id', aulaId);
+
+    if (!alumnos || alumnos.length === 0) return { data: [], error: null };
+    const alumnoIds = alumnos.map(a => a.id);
+
+    const { data: notas, error } = await this.supabase
+      .from('notas')
+      .select('*')
+      .eq('curso_id', cursoId)
+      .in('alumno_id', alumnoIds);
+
+    // Mapeamos las notas agregando los datos del alumno
+    const notasMapeadas = (notas || []).map(n => {
+      const al = alumnos.find(a => a.id === n.alumno_id);
+      return {
+        ...n,
+        alumno_nombre: al ? `${al.nombre} ${al.apellido}` : 'Estudiante'
+      };
+    });
+
+    return { data: notasMapeadas, error };
+  }
+
+  async updateNotaBimestral(alumnoId: number, cursoId: number, bimestreNum: number, nota: number, promedio: number) {
+    const colName = `bimestre_${bimestreNum}`;
+    return this.supabase
+      .from('notas')
+      .update({ [colName]: nota, promedio_final: promedio })
+      .eq('alumno_id', alumnoId)
+      .eq('curso_id', cursoId);
   }
 
   async insertTarea(tarea: {
@@ -264,5 +330,26 @@ export class SupabaseService {
       .getPublicUrl(data.path);
 
     return urlData.publicUrl;
+  }
+
+  // =====================================================
+  // NOTIFICACIONES
+  // =====================================================
+
+  async getNotificacionesByUsuario(usuarioId: number, usuarioTipo: string) {
+    return this.supabase
+      .from('notificaciones')
+      .select('*')
+      .eq('usuario_id', usuarioId)
+      .eq('usuario_tipo', usuarioTipo)
+      .order('fecha_creacion', { ascending: false })
+      .limit(20);
+  }
+
+  async marcarNotificacionLeida(notificacionId: number) {
+    return this.supabase
+      .from('notificaciones')
+      .update({ leido: true })
+      .eq('id', notificacionId);
   }
 }

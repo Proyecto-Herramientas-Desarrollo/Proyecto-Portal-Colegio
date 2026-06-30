@@ -1,146 +1,301 @@
-<div class="modal-overlay" (click)="cerrarClickFuera($event)">
-  <div class="modal-custom shadow-lg">
+<div class="card border-0 shadow-sm rounded-4 p-4 animate-fade-in">
+  
+  <!-- Cabecera de Curso con botón de retorno -->
+  <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+    <div>
+      <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 mb-2" (click)="volver()">
+        <i class="bi bi-arrow-left me-1"></i> Volver a Cursos
+      </button>
+      <h2 class="fw-bold text-dark mb-1">{{ curso?.nombre }}</h2>
+      <p class="text-muted mb-0">
+        <i class="bi bi-clock-history me-1"></i> Carga Horaria: {{ curso?.horasSemanales || 4 }} horas semanales
+      </p>
+    </div>
     
-    <div class="modal-header-custom p-4">
-      <div class="d-flex justify-content-between align-items-start w-100">
-        <div class="w-100 me-3">
-          <h2 class="fw-bold mb-1 text-white">{{ curso?.nombre }}</h2>
-          <p class="mb-3 text-white-50">
-            <i class="bi bi-clock-history me-1"></i> {{ curso?.horasSemanales }} horas semanales
-          </p>
-          
-          <div class="w-100">
-            <div class="d-flex justify-content-between text-white-50 small mb-1">
-              <span><i class="bi bi-graph-up me-1"></i> Progreso del Bimestre</span>
-              <span>45%</span>
-            </div>
-            <div class="progress" style="height: 6px; background-color: rgba(255,255,255,0.2);">
-              <div class="progress-bar bg-light" role="progressbar" style="width: 45%;"></div>
+    <div class="text-end d-none d-md-block" style="min-width: 150px;">
+      <span class="badge bg-primary px-3 py-2 rounded-pill shadow-sm">
+        Año Académico 2026
+      </span>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="text-center py-5" *ngIf="cargando">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando datos del curso...</span>
+    </div>
+    <p class="text-muted mt-3 mb-0">Obteniendo materiales y tareas del servidor...</p>
+  </div>
+
+  <!-- Contenido Principal -->
+  <div *ngIf="!cargando" class="animate-fade-in">
+    <!-- Pestañas de Navegación del Curso -->
+    <ul class="nav nav-pills mb-4 custom-tabs gap-2 border-bottom pb-3">
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" [class.active]="tabActiva === 'avisos'" (click)="cambiarTab('avisos')">
+          <i class="bi bi-megaphone me-1"></i> Avisos
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" [class.active]="tabActiva === 'materiales'" (click)="cambiarTab('materiales')">
+          <i class="bi bi-folder2-open me-1"></i> Materiales
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" [class.active]="tabActiva === 'tareas'" (click)="cambiarTab('tareas')">
+          <i class="bi bi-journal-check me-1"></i> Tareas
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" [class.active]="tabActiva === 'calificaciones'" (click)="cambiarTab('calificaciones')">
+          <i class="bi bi-award me-1"></i> Calificaciones
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fw-semibold" [class.active]="tabActiva === 'silabo'" (click)="cambiarTab('silabo')">
+          <i class="bi bi-file-earmark-text me-1"></i> Sílabo
+        </a>
+      </li>
+    </ul>
+
+    <!-- PESTAÑA AVISOS -->
+    <div *ngIf="tabActiva === 'avisos'" class="animate-fade-in">
+      <div class="d-flex flex-column gap-3">
+        @for (aviso of avisos; track aviso.id) {
+          <div class="card border-0 shadow-sm border-start border-4 border-info bg-light">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+                <h6 class="fw-bold mb-0 text-dark">
+                  <i class="bi bi-bell-fill me-2 text-info"></i>{{ aviso.titulo }}
+                </h6>
+                <span class="badge bg-secondary bg-opacity-25 text-dark px-3 py-1 rounded-pill small">
+                  <i class="bi bi-calendar-event me-1"></i>{{ aviso.fecha }}
+                </span>
+              </div>
+              <p class="text-muted mb-0 small ms-4">{{ aviso.mensaje }}</p>
             </div>
           </div>
-        </div>
-        
-        <button class="btn btn-light btn-sm fw-bold shadow-sm d-flex align-items-center gap-2" (click)="cerrarModal()">
-          <i class="bi bi-x-circle text-danger"></i> Cerrar
-        </button>
+        } @empty {
+          <div class="text-center py-4 text-muted bg-light rounded-3">No hay avisos recientes para este curso.</div>
+        }
       </div>
     </div>
 
-    <div class="modal-body-custom p-4">
-      <ul class="nav nav-pills mb-4 custom-tabs gap-2">
-        <li class="nav-item">
-          <a class="nav-link fw-semibold" [class.active]="tabActiva === 'avisos'" (click)="cambiarTab('avisos')">
-            <i class="bi bi-megaphone me-1"></i> Avisos
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-semibold" [class.active]="tabActiva === 'materiales'" (click)="cambiarTab('materiales')">
-            <i class="bi bi-folder2-open me-1"></i> Materiales
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-semibold" [class.active]="tabActiva === 'tareas'" (click)="cambiarTab('tareas')">
-            <i class="bi bi-journal-check me-1"></i> Tareas
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-semibold" [class.active]="tabActiva === 'silabo'" (click)="cambiarTab('silabo')">
-            <i class="bi bi-info-square me-1"></i> Sílabo
-          </a>
-        </li>
-      </ul>
-
-      @if (tabActiva === 'avisos') {
-        <div class="d-flex flex-column gap-3">
-          @for (aviso of avisos; track aviso.id) {
-            <div class="card border-0 shadow-sm border-start border-4 border-info bg-light">
-              <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <h6 class="fw-bold mb-0 text-dark">
-                    <i class="bi bi-bell-fill me-2 text-info"></i>{{ aviso.titulo }}
-                  </h6>
-                  <span class="badge bg-secondary bg-opacity-25 text-dark">
-                    <i class="bi bi-calendar-event me-1"></i>{{ aviso.fecha }}
-                  </span>
+    <!-- PESTAÑA MATERIALES -->
+    <div *ngIf="tabActiva === 'materiales'" class="animate-fade-in">
+      <div class="row g-3">
+        @for (m of materiales; track m.id) {
+          <div class="col-12 col-md-6">
+            <div class="card h-100 border-0 shadow-sm bg-light card-hover" style="border-radius: 12px;">
+              <div class="card-body d-flex align-items-center p-3">
+                <div class="me-3 fs-2" [ngClass]="{
+                  'text-danger': m.tipo === 'PDF',
+                  'text-primary': m.tipo === 'DOCX',
+                  'text-warning': m.tipo === 'PPTX'
+                }">
+                  <i class="bi" [class.bi-file-earmark-pdf-fill]="m.tipo === 'PDF'" 
+                               [class.bi-file-earmark-word-fill]="m.tipo === 'DOCX'" 
+                               [class.bi-file-earmark-slides-fill]="m.tipo === 'PPTX'"></i>
                 </div>
-                <p class="text-muted mb-0 small ms-4">{{ aviso.mensaje }}</p>
+                <div class="flex-grow-1 min-w-0">
+                  <h6 class="fw-bold text-dark mb-1 text-truncate">{{ m.titulo }}</h6>
+                  <small class="text-muted d-block">
+                    Subido: {{ m.fecha }} | Peso: {{ m.size }}
+                  </small>
+                </div>
+                <button class="btn btn-outline-primary btn-sm fw-bold rounded-circle p-2" (click)="descargarArchivo(m.titulo)" title="Descargar">
+                  <i class="bi bi-download px-1"></i>
+                </button>
               </div>
             </div>
-          }
-        </div>
-      }
+          </div>
+        } @empty {
+          <div class="col-12 text-center py-4 text-muted bg-light rounded-3">No se han subido materiales de clase aún.</div>
+        }
+      </div>
+    </div>
 
-      @if (tabActiva === 'materiales') {
-        <div class="row g-3">
-          @for (m of materiales; track m.id) {
-            <div class="col-12 col-md-6">
-              <div class="card h-100 border-0 shadow-sm card-hover" style="background-color: #f8f9fa;">
-                <div class="card-body d-flex align-items-center">
-                  <div class="me-3 fs-2 text-danger">
-                    <i class="bi bi-file-earmark-pdf-fill"></i>
-                  </div>
-                  <div class="flex-grow-1">
-                    <h6 class="fw-bold text-dark mb-1">{{ m.titulo }}</h6>
-                    <small class="text-muted">
-                      <i class="bi bi-calendar3 me-1"></i> {{ m.fecha }} | <i class="bi bi-hdd me-1"></i> {{ m.size }}
-                    </small>
-                  </div>
-                  <button class="btn btn-outline-primary btn-sm fw-bold" (click)="descargarArchivo(m.titulo)" title="Descargar">
-                    <i class="bi bi-download"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          }
-        </div>
-      }
-
-      @if (tabActiva === 'tareas') {
-        <ul class="list-group list-group-flush border rounded shadow-sm">
-          @for (t of tareas; track t.id) {
-            <li class="list-group-item p-3 d-flex justify-content-between align-items-center flex-wrap gap-3">
+    <!-- PESTAÑA TAREAS -->
+    <div *ngIf="tabActiva === 'tareas'" class="animate-fade-in">
+      <div class="d-flex flex-column gap-3">
+        @for (t of tareas; track t.id) {
+          <div class="card border border-light shadow-sm bg-white" style="border-radius: 12px;">
+            <div class="card-body p-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
               <div>
                 <h6 class="fw-bold mb-1 text-dark">
                   <i class="bi bi-pencil-square me-2 text-primary"></i> {{ t.titulo }}
                 </h6>
-                <small class="text-danger fw-medium">
-                  <i class="bi bi-alarm me-1"></i> Límite: {{ t.limite }}
-                </small>
+                <p class="text-muted small mb-2 ms-4" *ngIf="t.descripcion">{{ t.descripcion }}</p>
+                <div class="d-flex align-items-center gap-3 ms-4">
+                  <small class="text-danger fw-semibold">
+                    <i class="bi bi-alarm me-1"></i> Límite: {{ t.limite }}
+                  </small>
+                  <small class="text-muted" *ngIf="t.nota !== null">
+                    <i class="bi bi-check-all text-success me-1"></i> Calificación: <strong class="text-dark">{{ t.nota }}</strong>
+                  </small>
+                </div>
               </div>
-              <div class="d-flex align-items-center">
-                <span class="badge rounded-pill px-3 py-2" 
-                      [ngClass]="{'bg-success': t.estado === 'Entregado', 'bg-warning text-dark': t.estado === 'Pendiente'}">
+              <div class="d-flex align-items-center gap-3">
+                <span class="badge rounded-pill px-3 py-2 text-uppercase font-monospace" 
+                      [ngClass]="{
+                        'bg-success text-white border border-success': t.estado === 'Entregado', 
+                        'bg-danger text-white border border-danger': t.estado === 'Pendiente'
+                      }">
                   {{ t.estado }}
                 </span>
+                
                 @if (t.estado === 'Pendiente') {
-                  <button class="btn btn-primary btn-sm fw-bold ms-3">
-                    <i class="bi bi-cloud-arrow-up-fill me-1"></i> Subir Tarea
+                  <button (click)="abrirModalEntrega(t)" class="btn btn-primary btn-sm fw-bold px-3" style="border-radius: 8px;">
+                    <i class="bi bi-cloud-arrow-up-fill me-1"></i> Entregar
+                  </button>
+                } @else {
+                  <button class="btn btn-outline-secondary btn-sm fw-bold px-3" style="border-radius: 8px;" disabled>
+                    <i class="bi bi-check2-circle me-1"></i> Enviado
                   </button>
                 }
               </div>
-            </li>
-          }
-        </ul>
-      }
+            </div>
+          </div>
+        } @empty {
+          <div class="text-center py-4 text-muted bg-light rounded-3">No hay tareas pendientes en este curso.</div>
+        }
+      </div>
+    </div>
 
-      @if (tabActiva === 'silabo') {
-        <div class="card shadow-sm border-0 p-4" style="background-color: #f4f6f8;">
-          <h5 class="fw-bold text-dark mb-3">
-            <i class="bi bi-journal-text me-2"></i> Acerca del Curso de {{ curso?.nombre }}
-          </h5>
-          <p class="text-muted" style="line-height: 1.7;">
-            Este espacio contiene toda la planificación académica, normas de evaluación y recursos bibliográficos estructurados para el presente año escolar.
-          </p>
-          <div class="d-flex gap-2 mt-3">
-            <button class="btn btn-dark fw-semibold shadow-sm">
-              <i class="bi bi-printer me-1"></i> Descargar Sílabo
-            </button>
-            <button class="btn btn-outline-primary fw-semibold bg-white">
-              <i class="bi bi-chat-dots me-1"></i> Consultar al Docente
-            </button>
+    <!-- PESTAÑA CALIFICACIONES -->
+    <div *ngIf="tabActiva === 'calificaciones'" class="animate-fade-in">
+      <div class="row g-3 mb-4">
+        <!-- Bimestres -->
+        <div class="col-6 col-md-3">
+          <div class="p-3 border rounded-3 text-center bg-light">
+            <span class="text-muted small text-uppercase fw-semibold d-block mb-1">Bimestre 1</span>
+            <h3 class="fw-bold text-dark mb-0">{{ calificacionCurso?.bim1 !== null ? calificacionCurso?.bim1 : '—' }}</h3>
           </div>
         </div>
-      }
+        <div class="col-6 col-md-3">
+          <div class="p-3 border rounded-3 text-center bg-light">
+            <span class="text-muted small text-uppercase fw-semibold d-block mb-1">Bimestre 2</span>
+            <h3 class="fw-bold text-dark mb-0">{{ calificacionCurso?.bim2 !== null ? calificacionCurso?.bim2 : '—' }}</h3>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 border rounded-3 text-center bg-light">
+            <span class="text-muted small text-uppercase fw-semibold d-block mb-1">Bimestre 3</span>
+            <h3 class="fw-bold text-dark mb-0">{{ calificacionCurso?.bim3 !== null ? calificacionCurso?.bim3 : '—' }}</h3>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="p-3 border rounded-3 text-center bg-light">
+            <span class="text-muted small text-uppercase fw-semibold d-block mb-1">Bimestre 4</span>
+            <h3 class="fw-bold text-dark mb-0">{{ calificacionCurso?.bim4 !== null ? calificacionCurso?.bim4 : '—' }}</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Promedio General del Curso -->
+      <div class="card border-0 bg-primary bg-opacity-10 rounded-3 mb-4" style="border-radius: 12px;">
+        <div class="card-body p-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+          <div class="d-flex align-items-center gap-3">
+            <div class="bg-primary text-white p-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+              <i class="bi bi-star-fill"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold text-primary mb-1">Promedio Anual Acumulado</h6>
+              <span class="text-muted small">Criterio de aprobación estándar (mínimo 11)</span>
+            </div>
+          </div>
+          <div class="text-end">
+            <h1 class="fw-bold text-primary mb-0 font-monospace" style="font-size: 2.8rem;">
+              {{ calificacionCurso?.promedio !== null ? calificacionCurso?.promedio : '—' }}
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alerta Informativa -->
+      <div class="d-flex align-items-center mb-0 p-3 rounded-3 border"
+           [style.background]="(calificacionCurso?.promedio ?? 0) >= 11 ? '#e8f8f1' : (calificacionCurso?.promedio === null ? '#f8fafc' : '#fef2f2')"
+           [style.color]="(calificacionCurso?.promedio ?? 0) >= 11 ? '#0f766e' : (calificacionCurso?.promedio === null ? '#475569' : '#b91c1c')"
+           [style.border-color]="(calificacionCurso?.promedio ?? 0) >= 11 ? '#a7f3d0' : (calificacionCurso?.promedio === null ? '#e2e8f0' : '#fecaca')">
+        <i class="bi fs-4 me-3" 
+           [class.bi-check-circle-fill]="(calificacionCurso?.promedio ?? 0) >= 11"
+           [class.bi-exclamation-triangle-fill]="(calificacionCurso?.promedio ?? 0) < 11 && calificacionCurso?.promedio !== null"
+           [class.bi-info-circle-fill]="calificacionCurso?.promedio === null"
+           [style.color]="(calificacionCurso?.promedio ?? 0) >= 11 ? '#10b981' : (calificacionCurso?.promedio === null ? '#64748b' : '#ef4444')"></i>
+        <div>
+          <strong *ngIf="(calificacionCurso?.promedio ?? 0) >= 11">¡Estado Aprobado!</strong>
+          <strong *ngIf="(calificacionCurso?.promedio ?? 0) < 11 && calificacionCurso?.promedio !== null">Estado Desaprobado.</strong>
+          <strong *ngIf="calificacionCurso?.promedio === null">Sin promedio aún.</strong>
+          {{ (calificacionCurso?.promedio ?? 0) >= 11 ? ' Felicidades, mantén el ritmo de estudio.' : (calificacionCurso?.promedio === null ? ' Las notas bimestrales se calcularán conforme avance el calendario escolar.' : ' Te recomendamos revisar el material complementario y rendir tus tareas pendientes.') }}
+        </div>
+      </div>
+    </div>
+
+    <!-- PESTAÑA SILABO -->
+    <div *ngIf="tabActiva === 'silabo'" class="animate-fade-in">
+      <div class="card border border-light shadow-sm p-4 bg-white" style="border-radius: 12px;">
+        <h5 class="fw-bold text-dark mb-3">
+          <i class="bi bi-journal-text me-2 text-primary"></i>Planificación Curricular
+        </h5>
+        <p class="text-muted mb-4" style="line-height: 1.7;">
+          El sílabo contiene los objetivos de aprendizaje, contenidos programáticos divididos por unidades, criterios de evaluación pedagógica y referencias bibliográficas para complementar el dictado del curso escolar.
+        </p>
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-dark fw-semibold px-4 shadow-sm" (click)="descargarArchivo('Sílabo ' + curso?.nombre)">
+            <i class="bi bi-printer me-1"></i> Descargar Sílabo Oficial
+          </button>
+          <button class="btn btn-outline-primary fw-semibold bg-white px-4">
+            <i class="bi bi-chat-dots me-1"></i> Enviar Mensaje al Docente
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PARA ENTRADA DE TAREA (VOUCHER/ARCHIVOS) -->
+<div class="modal-backdrop fade show" *ngIf="mostrarModalEntrega"></div>
+<div class="modal fade show d-block" tabindex="-1" *ngIf="mostrarModalEntrega" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content border-0 shadow-lg" style="border-radius: 16px;">
+      <div class="modal-header bg-primary text-white border-0" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
+        <h5 class="modal-title fw-bold"><i class="bi bi-cloud-arrow-up-fill me-2"></i>Entregar Tarea</h5>
+        <button type="button" class="btn-close btn-close-white" (click)="cerrarModalEntrega()"></button>
+      </div>
+      <div class="modal-body p-4">
+        <div class="mb-3 p-3 bg-light rounded-3">
+          <h6 class="fw-bold text-dark mb-1">Tarea Seleccionada:</h6>
+          <span class="text-muted small">{{ tareaSeleccionada?.titulo }}</span>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold text-dark">Subir Archivo de Entrega</label>
+          <div class="file-upload-wrapper border border-dashed rounded-3 p-4 text-center bg-light">
+            <i class="bi bi-file-earmark-arrow-up fs-1 text-muted d-block mb-2"></i>
+            <span class="small text-muted d-block mb-3">Formatos aceptados: PDF, Word (DOCX), ZIP</span>
+            <input type="file" id="fileTarea" class="d-none" (change)="onFileSelected($event)" accept=".pdf,.docx,.zip">
+            <label for="fileTarea" class="btn btn-sm btn-outline-primary px-3 rounded-pill">Seleccionar Archivo</label>
+            <div class="mt-3 text-primary fw-semibold small text-truncate" *ngIf="archivoSeleccionadoNombre">
+              <i class="bi bi-check-circle-fill me-1 text-success"></i>{{ archivoSeleccionadoNombre }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Alerta de éxito -->
+        <div class="alert alert-success border-0 shadow-sm d-flex align-items-center mb-0 mt-3 animate-fade-in" role="alert" *ngIf="alertaExitoTarea">
+          <i class="bi bi-check-circle-fill me-2 fs-5"></i>
+          <div>¡Tarea entregada con éxito! Se notificará al docente.</div>
+        </div>
+      </div>
+      <div class="modal-footer border-0 bg-light p-3" style="border-bottom-left-radius: 16px; border-bottom-right-radius: 16px;">
+        <button type="button" class="btn btn-outline-secondary px-4 fw-semibold" (click)="cerrarModalEntrega()" [disabled]="subiendoTarea">
+          Cancelar
+        </button>
+        <button type="button" class="btn btn-primary px-4 fw-semibold" (click)="entregarTarea()" [disabled]="!archivoSeleccionadoNombre || subiendoTarea">
+          <span class="spinner-border spinner-border-sm me-1" role="status" *ngIf="subiendoTarea"></span>
+          Enviar Entrega
+        </button>
+      </div>
     </div>
   </div>
 </div>

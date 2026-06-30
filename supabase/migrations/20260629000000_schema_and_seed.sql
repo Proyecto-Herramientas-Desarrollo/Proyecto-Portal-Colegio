@@ -44,9 +44,7 @@ CREATE TABLE IF NOT EXISTS public.alumnos (
     user_id UUID, -- References auth.users(id) in Supabase
     foto_url TEXT,
     telefono VARCHAR(20),
-    contacto_emergencia TEXT,
-    carrera VARCHAR(100),
-    semestre INTEGER
+    contacto_emergencia TEXT
 );
 
 -- 5. HORARIOS

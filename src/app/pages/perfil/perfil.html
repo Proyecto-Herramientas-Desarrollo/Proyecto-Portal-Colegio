@@ -1,36 +1,10 @@
-<div class="container py-4">
+<div class="container py-4 animate-fade-in">
   <!-- Cabecera de la sección -->
-  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
-    <div>
-      <h3 class="fw-bold text-dark mb-1">Mi Perfil de Usuario</h3>
-      <p class="text-muted mb-0">
-        <i class="bi bi-shield-check me-1"></i> Información personal e institucional de la cuenta activa.
-      </p>
-    </div>
-    
-    <!-- Filtro interactivo de rol para pruebas y demostración -->
-    <div class="bg-white p-2 rounded-pill shadow-sm border d-flex gap-2 align-items-center">
-      <span class="text-muted px-2 small fw-semibold">Filtrar Vista:</span>
-      <div class="btn-group btn-group-sm" role="group">
-        <input type="radio" class="btn-check" name="filtroRol" id="filtroAlumno" value="alumno" [(ngModel)]="filtroRol" (change)="aplicarFiltro()">
-        <label class="btn btn-outline-primary rounded-pill px-3 py-1" for="filtroAlumno">
-          <i class="bi bi-person-fill me-1"></i> Alumno
-        </label>
-        
-        <input type="radio" class="btn-check" name="filtroRol" id="filtroDocente" value="docente" [(ngModel)]="filtroRol" (change)="aplicarFiltro()">
-        <label class="btn btn-outline-primary rounded-pill px-3 py-1" for="filtroDocente">
-          <i class="bi bi-briefcase-fill me-1"></i> Docente
-        </label>
-      </div>
-    </div>
-  </div>
-
-  <!-- Alerta de simulación si el rol filtrado es distinto al real -->
-  <div class="alert alert-info border-0 shadow-sm d-flex align-items-center mb-4" role="alert" *ngIf="filtroRol !== usuarioReal?.role" style="border-radius: 12px;">
-    <i class="bi bi-info-circle-fill fs-4 me-3 text-info"></i>
-    <div>
-      Estás visualizando una <strong>vista simulada de {{ filtroRol === 'alumno' ? 'Alumno' : 'Docente' }}</strong> para probar la adaptabilidad visual de la interfaz. Tu usuario real en sesión es un <strong>{{ usuarioReal?.role === 'alumno' ? 'Alumno' : 'Docente' }}</strong>.
-    </div>
+  <div class="mb-4">
+    <h3 class="fw-bold text-dark mb-1">Mi Perfil de Usuario</h3>
+    <p class="text-muted mb-0">
+      <i class="bi bi-shield-check me-1"></i> Información personal e institucional de la cuenta activa.
+    </p>
   </div>
 
   <div class="row g-4">
@@ -46,13 +20,15 @@
           </div>
           
           <h4 class="fw-bold mb-1 text-dark mt-5 pt-3">{{ usuarioMostrar?.nombre }} {{ usuarioMostrar?.apellido }}</h4>
-          <span class="badge px-3 py-2 rounded-pill mb-3" 
-                [ngClass]="{
-                  'bg-primary bg-opacity-10 text-primary border border-primary-subtle': filtroRol === 'alumno',
-                  'bg-success bg-opacity-10 text-success border border-success-subtle': filtroRol === 'docente'
-                }">
-            <i class="bi" [class.bi-person-fill]="filtroRol === 'alumno'" [class.bi-briefcase-fill]="filtroRol === 'docente'"></i>
-            {{ filtroRol === 'alumno' ? 'Alumno Regular' : 'Docente San Alfonso' }}
+          
+          <!-- Badge de Rol -->
+          <span class="d-inline-block px-3 py-2 rounded-pill mb-3 fw-semibold border"
+                [style.background]="usuarioReal?.role === 'alumno' ? '#e8f0fe' : '#e8f8f1'"
+                [style.color]="usuarioReal?.role === 'alumno' ? '#1a56db' : '#0f766e'"
+                [style.border-color]="usuarioReal?.role === 'alumno' ? '#bfdbfe' : '#99f6e4'"
+                style="font-size:0.82rem;">
+            <i class="bi me-1" [class.bi-person-fill]="usuarioReal?.role === 'alumno'" [class.bi-briefcase-fill]="usuarioReal?.role === 'docente'"></i>
+            {{ usuarioReal?.role === 'alumno' ? 'Alumno' : 'Docente' }}
           </span>
 
           <div class="border-top pt-3 mt-3 text-start">
@@ -81,8 +57,8 @@
         <div class="card-body p-4">
           <h5 class="fw-bold mb-4 text-dark"><i class="bi bi-card-text me-2 text-primary"></i>Detalles del Expediente</h5>
 
-          <!-- Filtro Alumno -->
-          <div *ngIf="filtroRol === 'alumno'" class="row g-4 animate-fade-in">
+          <!-- Si el usuario en sesión es Alumno -->
+          <div *ngIf="usuarioReal?.role === 'alumno'" class="row g-4 animate-fade-in">
             <div class="col-md-6">
               <div class="detail-item p-3 rounded-4 border bg-light h-100">
                 <div class="d-flex align-items-center mb-2">
@@ -132,8 +108,8 @@
             </div>
           </div>
 
-          <!-- Filtro Docente -->
-          <div *ngIf="filtroRol === 'docente'" class="row g-4 animate-fade-in">
+          <!-- Si el usuario en sesión es Docente -->
+          <div *ngIf="usuarioReal?.role === 'docente'" class="row g-4 animate-fade-in">
             <div class="col-md-6">
               <div class="detail-item p-3 rounded-4 border bg-light h-100">
                 <div class="d-flex align-items-center mb-2">
@@ -166,7 +142,7 @@
                   </div>
                   <h6 class="fw-bold text-secondary mb-0">Horas Semanales</h6>
                 </div>
-                <h5 class="fw-bold text-dark mb-0 ps-5">{{ cursoDocente?.horasSemanales }} horas</h5>
+                <h5 class="fw-bold text-dark mb-0 ps-5">{{ cursoDocente?.horas_semanales }} horas</h5>
               </div>
             </div>
 

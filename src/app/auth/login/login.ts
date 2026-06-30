@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -18,7 +18,11 @@ export class Login {
   mensajeError = '';
   cargando = false;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router, 
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   validarNumeros(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -37,16 +41,23 @@ export class Login {
 
     this.cargando = true;
     this.mensajeError = '';
+    this.cdr.detectChanges();
 
-    const { error } = await this.authService.login(this.dni, this.password);
+    try {
+      const { error } = await this.authService.login(this.dni, this.password);
+      this.cargando = false;
 
-    this.cargando = false;
+      if (error) {
+        this.mensajeError = error;
+        this.cdr.detectChanges();
+        return;
+      }
 
-    if (error) {
-      this.mensajeError = error;
-      return;
+      this.router.navigate(['/dashboard']);
+    } catch (err: any) {
+      this.cargando = false;
+      this.mensajeError = err.message || 'Error de conexión con el servidor.';
+      this.cdr.detectChanges();
     }
-
-    this.router.navigate(['/dashboard']);
   }
 }

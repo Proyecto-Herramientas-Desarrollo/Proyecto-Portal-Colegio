@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 // Importaciones de tus componentes
 import { PerfilMini } from '../shared/perfil-mini/perfil-mini';
@@ -33,26 +34,35 @@ import { AuthService } from '../auth/auth';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   seccionActiva: string = 'cursos';
   usuarioRol: string = 'alumno';
   usuario: any = null;
+  menuAbierto: boolean = false;
+  private sub!: Subscription;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    // Leer usuario directamente del AuthService (que usa Supabase)
-    this.usuario = this.authService.getUsuario();
-    this.usuarioRol = this.usuario?.role || 'alumno';
+    this.sub = this.authService.usuario$.subscribe(u => {
+      this.usuario = u;
+      this.usuarioRol = u?.role || 'alumno';
+      if (!this.seccionActiva || this.seccionActiva === 'cursos') {
+        this.seccionActiva = this.usuarioRol === 'docente' ? 'aulas' : 'cursos';
+      }
+    });
+  }
 
-    if (this.usuarioRol === 'docente') {
-      this.seccionActiva = 'aulas';
-    } else {
-      this.seccionActiva = 'cursos';
-    }
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
   }
 
   cambiarSeccion(nuevaSeccion: string) {
     this.seccionActiva = nuevaSeccion;
+    this.menuAbierto = false;
+  }
+
+  cerrarSesion() {
+    this.authService.logout();
   }
 }

@@ -1,42 +1,69 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SAN_ALFONSO_DB } from '../../../shared/data/db'; 
-import { DetalleCursoComponent } from './detalle-curso/detalle-curso'; 
+import { SAN_ALFONSO_DB } from '../../../shared/data/db';
+import { DetalleCursoComponent } from './detalle-curso/detalle-curso';
+import { AuthService } from '../../../auth/auth';
+import { SupabaseService } from '../../../shared/services/supabase.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cursos',
   standalone: true,
-  imports: [CommonModule, DetalleCursoComponent], 
+  imports: [CommonModule, DetalleCursoComponent],
   templateUrl: './cursos.html',
   styleUrl: './cursos.css'
 })
-export class Cursos implements OnInit {
+export class Cursos implements OnInit, OnDestroy {
   listaCursos: any[] = [];
   alumnoActual: any;
-  aulaActual: any; 
-
-  // Variable para saber qué curso abrir en la ventana
+  aulaActual: any;
   cursoSeleccionado: any = null;
+  private sub!: Subscription;
+
+  constructor(
+    private authService: AuthService,
+    private supabaseService: SupabaseService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
-    // 1. Obtenemos tus datos (ID 3)
-    this.alumnoActual = SAN_ALFONSO_DB.alumnos.find(a => a.id === 3);
-    
-    // 2. Información personalizada según su aula_id
-    if (this.alumnoActual) {
-      this.aulaActual = SAN_ALFONSO_DB.aulas.find(aula => aula.id === this.alumnoActual.aula_id);
-    }
-
-    // 3. Consumiendo las materias del catálogo
-    this.listaCursos = SAN_ALFONSO_DB.cursos;
+    this.sub = this.authService.usuario$.subscribe(async u => {
+      if (u) {
+        this.alumnoActual = SAN_ALFONSO_DB.alumnos.find(a => a.id === u.id)
+          ?? { nombre: u.nombre, apellido: u.apellido, aula_id: u.aula_id };
+        const aulaId = this.alumnoActual?.aula_id ?? u.aula_id;
+        this.aulaActual = SAN_ALFONSO_DB.aulas.find(aula => aula.id === aulaId);
+        
+        await this.cargarCursos();
+      }
+    });
   }
 
-  // Funciones para controlar la ventana flotante
+  async cargarCursos() {
+    try {
+      const { data, error } = await this.supabaseService.getCursos();
+      if (data && !error && data.length > 0) {
+        this.listaCursos = data;
+      } else {
+        this.listaCursos = SAN_ALFONSO_DB.cursos;
+      }
+    } catch {
+      this.listaCursos = SAN_ALFONSO_DB.cursos;
+    }
+    this.cdr.detectChanges();
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
+  }
+
   abrirDetalle(curso: any) {
-    this.cursoSeleccionado = curso; // Guarda el curso (Matemática, CIT, Inglés, etc)
+    this.cursoSeleccionado = curso;
+    this.cdr.detectChanges();
   }
 
   cerrarDetalle() {
-    this.cursoSeleccionado = null; // Oculta la ventana
+    this.cursoSeleccionado = null;
+    this.cdr.detectChanges();
   }
 }
