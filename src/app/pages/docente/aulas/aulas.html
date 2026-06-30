@@ -1,1 +1,89 @@
-<p>aulas works!</p>
+<div class="aulas-container">
+  <h2>Panel del Docente</h2>
+
+  <div *ngIf="!aulaSeleccionada">
+    <h3>Mis Cursos y Aulas Asignadas</h3>
+    <p class="text-muted">Seleccione un aula para ver a los estudiantes y registrar asistencias.</p>
+
+    <div class="cards-grid">
+      <div class="card" *ngFor="let aula of aulasAsignadas" (click)="seleccionarAula(aula)">
+        <div class="card-body">
+          <h4>{{ aula.grado }}</h4>
+          <p>Sección: "{{ aula.seccion }}"</p>
+          <p>Turno: {{ aula.turno }}</p>
+          <button class="btn btn-primary">Ver Estudiantes</button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="aulasAsignadas.length === 0" class="alert alert-warning mt-3">
+      No tienes aulas asignadas en tu horario.
+    </div>
+  </div>
+
+  <div *ngIf="aulaSeleccionada">
+    <div class="header-action">
+      <button class="btn btn-secondary" (click)="volverListaAulas()">← Volver a Mis Aulas</button>
+      <h3>Lista de estudiantes - {{ aulaSeleccionada.grado }} "{{ aulaSeleccionada.seccion }}"</h3>
+    </div>
+
+    <div class="asistencia-controls mt-3">
+      <label for="fecha"><strong>Fecha de asistencia:</strong></label>
+      <input type="date" id="fecha" [(ngModel)]="fechaAsistencia" class="form-control" style="width: auto; display: inline-block; margin-left: 10px;">
+    </div>
+
+    <div *ngIf="mensajeExito" class="alert alert-success mt-3">
+      {{ mensajeExito }}
+    </div>
+
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>DNI</th>
+          <th>Apellidos y Nombres</th>
+          <th>Asistencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let estudiante of estudiantes">
+          <td>{{ estudiante.id }}</td>
+          <td>{{ estudiante.dni }}</td>
+          <td>{{ estudiante.apellido }}, {{ estudiante.nombre }}</td>
+          <td>
+            <div class="radio-group">
+              <label>
+                <input type="radio"
+                       [name]="'asistencia_' + estudiante.id"
+                       [checked]="asistencias[estudiante.id] === 'Presente'"
+                       (change)="marcarAsistencia(estudiante.id, 'Presente')"> Presente
+              </label>
+              <label>
+                <input type="radio"
+                       [name]="'asistencia_' + estudiante.id"
+                       [checked]="asistencias[estudiante.id] === 'Falta'"
+                       (change)="marcarAsistencia(estudiante.id, 'Falta')"> Falta
+              </label>
+              <label>
+                <input type="radio"
+                       [name]="'asistencia_' + estudiante.id"
+                       [checked]="asistencias[estudiante.id] === 'Tardanza'"
+                       (change)="marcarAsistencia(estudiante.id, 'Tardanza')"> Tardanza
+              </label>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="estudiantes.length === 0" class="alert alert-warning mt-3">
+      No hay estudiantes matriculados en esta aula.
+    </div>
+
+    <div class="actions-footer mt-3" *ngIf="estudiantes.length > 0">
+      <button class="btn btn-success" (click)="guardarAsistencias()">
+        Guardar Asistencias
+      </button>
+    </div>
+  </div>
+</div>
