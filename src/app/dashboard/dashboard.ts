@@ -11,8 +11,8 @@ import { Finanzas } from '../pages/alumno/finanzas/finanzas';
 import { HistorialEscolar } from '../pages/alumno/historial-escolar/historial-escolar';
 import { PerfilComponent } from '../pages/perfil/perfil';
 import { Aulas } from '../pages/docente/aulas/aulas';
-// AQUÍ IMPORTAMOS TU NUEVO COMPONENTE:
-import { TramitesComponent } from '../pages/alumno/tramites/tramites'; 
+import { TramitesComponent } from '../pages/alumno/tramites/tramites';
+import { AuthService } from '../auth/auth';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,7 +28,7 @@ import { TramitesComponent } from '../pages/alumno/tramites/tramites';
     HistorialEscolar,
     PerfilComponent,
     Aulas,
-    TramitesComponent // LO AÑADIMOS AQUÍ PARA PODER USARLO
+    TramitesComponent
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
@@ -38,24 +38,13 @@ export class DashboardComponent implements OnInit {
   usuarioRol: string = 'alumno';
   usuario: any = null;
 
+  constructor(private authService: AuthService) {}
+
   ngOnInit() {
-    this.cargarSesion();
-  }
+    // Leer usuario directamente del AuthService (que usa Supabase)
+    this.usuario = this.authService.getUsuario();
+    this.usuarioRol = this.usuario?.role || 'alumno';
 
-  cargarSesion() {
-    const sesionRaw = localStorage.getItem('usuario_sesion');
-    if (sesionRaw) {
-      try {
-        this.usuario = JSON.parse(sesionRaw);
-        this.usuarioRol = this.usuario.role || 'alumno';
-      } catch (e) {
-        this.usuarioRol = 'alumno';
-      }
-    } else {
-      this.usuarioRol = 'alumno';
-    }
-
-    // Cambiar la sección inicial según el rol
     if (this.usuarioRol === 'docente') {
       this.seccionActiva = 'aulas';
     } else {
