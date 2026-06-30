@@ -1,1 +1,85 @@
-<p>notificaciones works!</p>
+<div class="container py-4 animate-fade-in" style="max-width: 900px;">
+  
+  <!-- Cabecera del Panel -->
+  <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+    <div>
+      <h3 class="fw-bold text-dark mb-0">
+        <i class="bi bi-bell-fill me-2 text-primary"></i>Centro de Notificaciones
+      </h3>
+      <p class="text-muted mb-0 mt-1">Mantente al tanto de tus actividades académicas.</p>
+    </div>
+    
+    <button class="btn btn-outline-secondary btn-sm fw-semibold shadow-sm" (click)="marcarComoLeidas()">
+      <i class="bi bi-check2-all me-1"></i> Marcar leídas
+    </button>
+  </div>
+
+  <!-- Lista de Notificaciones -->
+  <div class="d-flex flex-column gap-3">
+    
+    <!-- Mensaje de Bandeja Vacía -->
+    @if (listaNotificaciones.length === 0) {
+      <div class="text-center py-5">
+        <i class="bi bi-inbox text-muted" style="font-size: 4rem;"></i>
+        <h5 class="text-muted mt-3 fw-bold">Estás al día</h5>
+        <p class="text-muted">No tienes notificaciones nuevas.</p>
+      </div>
+    }
+
+    <!-- Iteración de Tarjetas -->
+    @for (notif of listaNotificaciones; track notif.id) {
+      <div class="card border-0 shadow-sm notificacion-card" 
+           [ngClass]="{
+             'bg-light opacity-75': notif.leida, 
+             'border-start border-4': true, 
+             'border-danger': notif.tipo === 'urgente', 
+             'border-success': notif.tipo === 'academico', 
+             'border-primary': notif.tipo === 'material', 
+             'border-warning': notif.tipo === 'administrativo'
+           }">
+        
+        <div class="card-body position-relative p-4">
+          
+          <!-- Punto Rojo de "No Leído" -->
+          @if (!notif.leida) {
+            <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle indicator-dot"></span>
+          }
+
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="d-flex gap-3 align-items-start w-100">
+              
+              <!-- Ícono Dinámico según el Tipo de Alerta -->
+              <div class="icono-contenedor rounded-circle d-flex justify-content-center align-items-center" 
+                   [ngClass]="{
+                     'bg-danger-subtle text-danger': notif.tipo === 'urgente', 
+                     'bg-success-subtle text-success': notif.tipo === 'academico', 
+                     'bg-primary-subtle text-primary': notif.tipo === 'material', 
+                     'bg-warning-subtle text-warning': notif.tipo === 'administrativo'
+                   }">
+                @if (notif.tipo === 'urgente') { <i class="bi bi-exclamation-triangle-fill"></i> }
+                @if (notif.tipo === 'academico') { <i class="bi bi-award-fill"></i> }
+                @if (notif.tipo === 'material') { <i class="bi bi-file-earmark-text-fill"></i> }
+                @if (notif.tipo === 'administrativo') { <i class="bi bi-folder-fill"></i> }
+              </div>
+              
+              <!-- Contenido del Texto -->
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <h6 class="fw-bold mb-0 text-dark">{{ notif.titulo }}</h6>
+                  <small class="text-muted fw-medium"><i class="bi bi-clock me-1"></i>{{ notif.fecha }}</small>
+                </div>
+                <p class="mb-0 text-muted" style="line-height: 1.6;">{{ notif.mensaje }}</p>
+              </div>
+            </div>
+
+            <!-- Botón Oculto de Eliminar -->
+            <button class="btn btn-link text-muted p-0 ms-3 btn-eliminar" (click)="eliminarNotificacion(notif.id)" title="Eliminar alerta">
+              <i class="bi bi-x-lg"></i>
+            </button>
+            
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

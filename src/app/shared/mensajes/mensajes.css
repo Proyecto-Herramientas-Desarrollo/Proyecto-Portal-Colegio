@@ -1,0 +1,75 @@
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Fija la altura como si fuera una app de escritorio */
+.chat-container {
+  height: 75vh; 
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Fondo gris sutil para el área del chat */
+.bg-light-gray {
+  background-color: #e5e5f7;
+  background-image: radial-gradient(#cbd3dd 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Círculos con las iniciales */
+.avatar {
+  width: 48px;
+  height: 48px;
+  font-size: 1.2rem;
+}
+.avatar-sm {
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+}
+
+/* Lista Lateral */
+.contact-item {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.contact-item:hover {
+  background-color: #f8f9fa;
+}
+.contact-item.active-chat {
+  background-color: #e9ecef;
+  border-left: 4px solid #0d6efd;
+}
+
+/* Burbujas de Chat Inteligentes */
+.message-bubble {
+  max-width: 75%;
+  border-radius: 16px;
+}
+/* Quita el borde redondeado del lado que corresponda (estilo iMessage/WhatsApp) */
+.rounded-in {
+  border-top-left-radius: 0;
+}
+.rounded-out {
+  border-top-right-radius: 0;
+}
+
+/* Scrollbar Personalizado y Delgado */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
