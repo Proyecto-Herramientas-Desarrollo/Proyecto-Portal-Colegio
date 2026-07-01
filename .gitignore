@@ -42,3 +42,14 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Variables de entorno - NUNCA subir al repositorio
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Archivos de environment generados por set-env.ts (contienen credenciales reales)
+# Se regeneran automáticamente en cada build
+src/environments/environment.ts
+src/environments/environment.prod.ts

@@ -1,27 +1,41 @@
-name: CI Angular Proyecto Portal Colegio
+name: CI - Build & Test
+
 on:
   push:
     branches:
-      - feature-ci
-
+      - main
+      - feature-*
+      - develop
   pull_request:
     branches:
       - main
+
 jobs:
-  build-angular:
+  build-and-test:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Descargar codigo
-      uses: actions/checkout@v4
-      
-    - name: Configurar Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-        cache: npm
+      - name: Descargar código
+        uses: actions/checkout@v4
 
-    - name: Instalar dependencias
-      run: npm install
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
 
-    - name: Construir proyecto Angular
-      run: npm run build
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Verificar build (con variables de entorno de prueba)
+        env:
+          # En CI usamos valores de prueba para verificar que compila
+          # Las credenciales reales solo se usan en el workflow de deploy
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL || 'https://placeholder.supabase.co' }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY || 'placeholder_key_for_ci' }}
+        run: npm run build -- --configuration production
+
+      - name: Verificar tamaño del bundle
+        run: |
+          echo "📦 Tamaño del build:"
+          du -sh dist/proyecto-portal-colegio/browser/ 2>/dev/null || du -sh dist/ 2>/dev/null || echo "No se encontró el directorio dist"
