@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "set-env": "ts-node --esm set-env.ts",
+    "set-env": "node set-env.js",
     "prebuild": "npm run set-env",
     "start": "npm run set-env && ng serve",
     "build": "ng build",
