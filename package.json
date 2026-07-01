@@ -6,13 +6,15 @@
     "set-env": "node set-env.js",
     "prebuild": "npm run set-env",
     "start": "npm run set-env && ng serve",
-    "build": "ng build",
-    "build:prod": "ng build --configuration production",
+    "build": "ng build --configuration production",
+    "build:dev": "ng build --configuration development",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
   "private": true,
-  "packageManager": "npm@11.14.1",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
     "@angular/common": "^21.2.0",
     "@angular/compiler": "^21.2.0",

@@ -3,7 +3,7 @@
   "name": "portal-colegio",
   "buildCommand": "npm run build",
   "outputDirectory": "dist/proyecto-portal-colegio/browser",
-  "installCommand": "npm ci",
+  "installCommand": "npm install",
   "framework": null,
   "rewrites": [
     {
